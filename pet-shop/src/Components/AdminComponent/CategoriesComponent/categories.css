@@ -1,0 +1,38 @@
+.categories-container {
+    width: 79%;
+    margin: 10px;
+    padding: 10px;
+    border: 1px solid black;
+    min-height: 90vh;
+    overflow: scroll;
+}
+
+.categories-main-menu , .categories-main-menu ul{
+    margin: 10px;
+    padding: 10px;
+    list-style: none;
+}
+
+.arrow {
+    cursor: pointer;
+    user-select: none;
+  }
+  
+  .arrow::before {
+    content: "\25B6";
+    color: gray;
+    display: inline-block;
+    margin-right: 5px;
+    float: left;
+    margin-left: -20px;
+    transition: all .1s linear;
+  }
+
+  .arrow-down::before {
+    transform: rotate(90deg);
+    transition:  transform .1s linear;
+  }
+
+  .red{
+      color: red;
+  }

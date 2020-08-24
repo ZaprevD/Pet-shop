@@ -1,0 +1,41 @@
+.header-box {
+    width: 100%;
+    display: flex;
+    background: rgb(62, 255, 62);
+}
+
+.box-50 {
+    width: 50%;
+}
+
+.main-list{
+    display: flex;
+    justify-content: space-between;
+    list-style: none;
+}
+
+.main-list li {
+    background: khaki;
+    padding: 15px 30px;
+}
+
+a {
+    text-decoration: none;
+    color: rgb(0, 0, 0);
+}
+
+.main-list a.active li{
+    background-color: rgb(255, 255, 255);
+    color: lime;
+}
+
+.image-holder{
+    width: 8%;
+    position: absolute;
+    border-radius: 50%;
+    overflow: hidden;
+    left: 7%;
+}
+.image-holder img {
+    width: 100%;
+}

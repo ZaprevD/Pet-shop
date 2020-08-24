@@ -1,0 +1,15 @@
+
+
+
+.product-holder{
+  width: 30%;
+  height: 300px;
+  border: 1px solid black;  
+  display: flex;
+  margin: 10px auto;
+}
+
+
+.box-45 {
+    width: 45%;
+}

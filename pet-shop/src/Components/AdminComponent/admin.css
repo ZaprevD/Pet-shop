@@ -1,0 +1,266 @@
+.products-box{ 
+    width: 80%;
+    display: flex;
+    flex-wrap: wrap;
+    height: 90vh;
+    overflow: scroll;
+}
+
+.users-box {
+    width: 80%;
+    height: 90vh;
+    overflow: scroll;
+}
+
+.product-cart {
+    width: 30%;
+    padding: 3px;
+    border: 1px solid black;
+    background: silver;
+    height: 250px;
+    border-radius: 10px;
+    box-shadow: 10px 5px 10px;
+    display: flex;
+    margin: 15px;
+    overflow: hidden;
+    position: relative;
+    flex-wrap: wrap;
+}
+
+.box-50{
+    width: 50%;
+    position: relative;
+}
+
+.box-50 img {
+    width: 100%;
+}
+
+
+.cart-footer{
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    padding: 2px;
+    right: 0;
+}
+
+.edit-btn{
+    position: absolute;
+    left: 84%;
+    bottom: 2%;
+    padding: 3px 10px;
+    background: yellow;
+    border: none;
+    border-radius: 5px;
+}
+
+.cancel-btn{ 
+    background: red;
+    border: none;
+    border-radius: 5px;
+    padding: 3px;
+    margin: 7px 2px 0px 2px;
+}
+
+.box-50 input, .box-50 textarea {
+    width: 95%;
+    margin: 5px 0;
+}
+
+.action-product{
+    display: flex;
+}
+
+.action-product label {
+    width: 80%;
+}
+
+.action-product input {
+    width: 15%;
+}
+
+.delete-product { 
+    width: 10%;
+    background: rgb(241, 3, 3);
+    position: absolute;
+    left: 45%;
+    padding: 10px;
+    top: 45%;
+    display:  none;
+    border-radius: 30%;
+    cursor: pointer;
+    z-index: 9999;
+}
+
+.product-cart:hover .delete-product{
+    display: block;
+}
+
+.delete-product:hover {
+    transform:  scale(1.5);
+}
+
+.new-product-form {
+    width: 90%;
+    height: 65%;
+    position: absolute;
+    left: 5%;
+    top: 35%;
+    background: rgb(148, 142, 142);
+    border-radius: 5px;
+}
+
+.new-product-form form {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 10px 0;
+}
+
+
+.input-holder {
+    width: 90%;
+}
+
+.input-holder input, .input-holder textarea {
+    width: 100%;
+    margin: 10px 0;
+}
+
+.input-holder input[type="checkbox"] {
+    width: 50%;
+}
+
+.input-holder button {
+    margin-bottom: 10px;
+    margin-left: 0;
+    padding: 3px;
+}
+
+.input-holder:nth-child(3) {
+    width: 90%;
+    display: flex;
+}
+
+.input-holder:nth-child(3) label {
+    padding-top: 5px;
+        width: 80%;
+}
+
+.user-info-holder  {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    padding: 3px;
+    margin: 15px 7px;
+}
+
+.box-30 {
+    width: 30%;
+}
+
+.box-40 {
+    width: 40%;
+}
+
+.box-60 {
+    width: 60%;
+}
+
+.box-10-flex {
+    width: 10%;
+    display: flex;
+}
+
+.info-type { 
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    padding: 5px;
+    margin: 15px 5px;
+}
+
+.box-10-flex .edit-b{
+    padding: 4px 5px;
+    background: rgb(243, 243, 37);
+    border:none;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.box-10-flex .delete-b {
+    padding: 4px 5px;
+    background: rgb(238, 7, 7);
+    color: white;
+    border-radius: 5px;
+    border:none;
+    cursor: pointer;
+}
+
+.box-30 input {
+    padding: 3px;
+    font-size: 15px;
+}
+
+.image-box {
+    width: 95%;
+    height: 61%;
+    margin: 25% auto;
+    border-radius: 50%;
+    position: relative;
+}
+
+.save-btn{
+    padding: 3px;
+    margin: 0 5px;
+    border:none;
+    background: rgb(255, 255, 92);
+    border-radius: 5px;
+}
+
+
+.edit-image-holder{
+   width: 100%; 
+   height: 100%;
+   position:  absolute;
+   left: 0;
+   top: 0;
+
+   display: none;
+}
+
+.edit-image-holder input {
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+
+.change-pic-btn{
+    width: 90%;
+    height: 90%;
+    margin: 5% auto;
+    border-radius: 50%;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgb(192, 192, 5, 0.8);
+}
+
+.image-box:hover .edit-image-holder{
+    display: block;
+}   
+
+.set-image-btn {
+    width: 50%;
+    padding: 5px;
+    position: absolute;
+    left: 25%;
+    bottom: 10%;
+}

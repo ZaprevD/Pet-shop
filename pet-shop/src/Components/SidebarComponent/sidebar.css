@@ -1,0 +1,22 @@
+
+.sidebar-window {
+    width: 20%;
+    height: 90vh;
+    position: fixed;
+    right: 0;
+    background: rgb(253, 240, 163);
+    padding: 20px;
+}
+
+.sidebar-window  ul {
+    list-style: none;
+}
+
+.sidebar-window  ul li {
+   margin: 10px 0;
+   cursor: pointer;
+}
+
+.sidebar-window  ul li:hover {
+    color: red;
+}

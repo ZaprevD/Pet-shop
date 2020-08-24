@@ -1,0 +1,128 @@
+import axios from "axios";
+
+
+const auth = {
+    'headers': {
+        'Authorization': 'Bearer ' + localStorage.authToken
+    }
+}
+
+export const adminLogin = (data) => {
+    return axios.post("/api/login", data)
+        .then(res => {
+            localStorage.clear();
+            localStorage.setItem("authToken", res.data);
+            return res.status
+        }).catch(err => {
+            const msg = err.message;
+            let status = msg.substr(msg.indexOf("code") + 4);
+            return status;
+        });
+}
+
+export const logOut = () => {
+    localStorage.removeItem("authToken");
+    window.location.href = "/";
+}
+
+export const getAllProducts = () => {
+    return axios.get(`/api/products`, auth)
+        .then(res => {
+            return { data: res.data, status: res.status }
+        }).catch(err => {
+            const msg = err.message;
+            let status = msg.substr(msg.indexOf("code") + 4);
+            return { status: status };
+        });
+}
+
+export const updateProduct = (name, desc, price, id, action) => {
+    const data = { name: name, desc: desc, price: price, on_action: action }
+    return axios.put(`/api/product/${id}`, data, auth)
+        .then(res => console.log(res.data)).catch(err => console.log(err.message));
+}
+
+export const deleteProduct = (id) => {
+    return axios.delete(`/api/product/${id}`, auth)
+        .then(res => console.log(res.data))
+        .catch(err => console.log(err.message));
+}
+
+export const addNewProduct = data => {
+    return axios.post(`/api/product`, data, auth)
+        .then(res => console.log(res.data))
+        .catch(err => console.log(err.message));
+}
+
+
+export const getAllUsers = () => {
+    return axios.get(`/api/users`, auth)
+        .then(res => {
+            return { data: res.data, status: res.status }
+        }).catch(err => {
+            const msg = err.message;
+            let status = msg.substr(msg.indexOf("code") + 4);
+            return { status: status };
+        });
+}
+
+export const getProductsOnAction = () => {
+    return axios.get("/api/products/on-action")
+        .then(res => res.data).catch(err => console.log(err));
+}
+
+export const editUser = (data, id) => {
+    return axios.put(`/api/user/${id}`, data, auth)
+        .then(res => res.data).catch(err => console.log(err.message));
+}
+
+export const registerUser = (data) => {
+    return axios.post(`/api/register`, data, auth)
+        .then(res => res.data).catch(err => err.message);
+}
+
+export const deleteUser = id => {
+    return axios.delete(`/api/user/${id}`, auth)
+        .then(res => res.data).catch(err => err.message);
+}
+
+const config = {
+    'headers': {
+        'Authorization': 'Bearer ' + localStorage.authToken,
+        'content-type': 'multipart/form-data'
+    }
+}
+
+export const uploadFile = (id, file) => {
+    return axios.patch(`/api/change/picture/${id}`, file, config)
+        .then(res => res.status).catch(err => err.message);
+}
+
+export const getAllCategories = () => {
+    return axios.get(`/categories`, auth).then(res => res.data)
+        .catch(err => console.log(err.message));
+}
+
+export const getTopCategories = () => {
+    return axios.get(`/top-categories`, auth)
+        .then(res => res.data).catch(err => console.log(err.message));
+}
+export const addTopCategory = (data) => {
+    return axios.post('/top-cateogry', data, auth)
+        .then(res => console.log(res.data)).catch(err => console.log(err.message));
+}
+
+export const addSubCategory = (data, id) => {
+    return axios.post(`/sub-cateogry/${id}`, data, auth)
+        .then(res => res.data).catch(err => console.log(err.message));
+}
+
+export const editCategory = (data, id) => {
+    return axios.patch(`/edit-category/${id}`, data, auth)
+    .then(res => console.log(res.data)).catch(err => console.log(err.message));
+}
+
+export const deleteCategory = id => {
+    return axios.delete(`/delete-category/${id}`,auth)
+    .then(res => res.data).catch(err => console.log(err.message));
+}
