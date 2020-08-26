@@ -3,13 +3,10 @@ import ListElement from "./ListElement";
 const Category = props => {
 
     return (
-        <React.Fragment>
-            <ul>
-                {props.category.children.length < 1 ? <ListElement name={props.name} class='red' deleteHandler={props.deleteHandler} category={props.category} /> :
-                    <ListElement class='arrow' name={props.name} deleteHandler={props.deleteHandler} category={props.category} />
-                }
-            </ul>
-        </React.Fragment>
+        <ul className="categories-main-menu">
+                {props.category.children.length < 1 ? <ListElement  class="red"  category={props.category} />
+                : <ListElement class="arrow" category={props.category} /> }
+        </ul>
     )
 }
 

@@ -15,8 +15,8 @@ const ListElement = props => {
     };
 
     return (
-        <li className={props.class} onClick={showChildrenHandler}>
-            {showChildrenElements ? sub.map(el => <Category key={el.id} deleteHandler={props.deleteHandler} category={el} />) : null}
+        <li className={props.class} onClick={showChildrenHandler}> {props.category.NAME}
+            {showChildrenElements ? sub.map(el => <Category key={el.Id} deleteHandler={props.deleteHandler} category={el} />) : null}
         </li>
     )   
 }
