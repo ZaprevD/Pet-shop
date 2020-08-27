@@ -2,6 +2,8 @@
     width: 100%;
     display: flex;
     background: rgb(62, 255, 62);
+    position: fixed;
+    top:0;
 }
 
 .box-50 {

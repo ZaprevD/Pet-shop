@@ -1,5 +1,5 @@
 const query = require("./query");
-
+const categoryQuery = require("../categories/query");
 
 getAllProducts = async (req, res) => {
     try {
@@ -8,6 +8,15 @@ getAllProducts = async (req, res) => {
         res.status(200).send(clear);
     } catch (error) {
         console.log(error);
+    }
+}
+
+getProductsByCategory = async (req, res) => {
+    try {
+        let data = await query.getProductsByCategoryIdQuery(req.params.id);
+        res.status(200).send(data);
+    } catch (error) {
+        res.status(500).send(error.message);
     }
 }
 
@@ -34,7 +43,8 @@ addNewProduct = async (req, res) => {
         req.body.onAction === "true" ? req.body.onAction = true : req.body.onAction = false;
         req.body.image === "" ? req.body.image = "No_Picture.jpg" : null;
         req.body.image.includes(" ") ? req.body.image = req.body.image.replace(/\s/g, '-') : null;
-        await query.addNewProductQuery(req.body.name, req.body.desc, req.body.price, req.body.onAction, req.body.image);
+        const categoryId = await categoryQuery.getCategoryByNameQuery(req.body.categoryName);
+        await query.addNewProductQuery(req.body.name, req.body.desc, req.body.price, req.body.onAction, categoryId[0].Id, req.body.image);
         if (req.files !== null) {
             const file = req.files.productImage;
             file.name.includes(" ") ? file.name = file.name.replace(/\s/g, '-') : null;
@@ -42,14 +52,14 @@ addNewProduct = async (req, res) => {
                 if (err) {
                     console.log(err);
                     res.status(500).send(err);
-                }
-            })
-        }
+                };
+            });
+        };
         res.status(200).send("Производот е додаден");
     } catch (error) {
         console.log(error)
-    }
-}
+    };
+};
 
 changeProductPicture = async (req, res) => {
     try {
@@ -61,16 +71,16 @@ changeProductPicture = async (req, res) => {
                 if (err) {
                     console.log(err);
                     return res.status(500).send(err);
-                }
-            })
+                };
+            });
             await query.changeProductPictureQuery(file.name, req.params.id)
             return res.status(200).send("Сликата е променета");
-        }
+        };
         res.status(400).send("Немате внесено слика");
     } catch (error) {
         res.status(500).send(error.message);
-    }
-}
+    };
+};
 
 getProductsOnAction = async (req, res) => {
     try {
@@ -82,5 +92,7 @@ getProductsOnAction = async (req, res) => {
 }
 
 
-module.exports = { getAllProducts, updateProduct, deleteProduct, addNewProduct, getProductsOnAction,
-     changeProductPicture }
+module.exports = {
+    getAllProducts, updateProduct, deleteProduct, addNewProduct, getProductsOnAction,
+    changeProductPicture, getProductsByCategory
+}

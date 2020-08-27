@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { editUser } from "../../adminFunctions";
 const EditUser = props => {
 
     const [email, setEmail] = useState(props.email);

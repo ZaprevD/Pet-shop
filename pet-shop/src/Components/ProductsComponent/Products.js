@@ -1,9 +1,12 @@
 import React from "react";
 import "./products.css";
+import CategoriesMenu from "./CategoriesMenu";
 const Products = props => {
 
     return(
-        <h1>Products</h1>
+        <React.Fragment>
+            <CategoriesMenu />
+        </React.Fragment>
     )
 }
 

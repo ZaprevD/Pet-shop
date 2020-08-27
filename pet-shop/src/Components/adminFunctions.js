@@ -126,3 +126,8 @@ export const deleteCategory = id => {
     return axios.delete(`/delete-category/${id}`,auth)
     .then(res => res.data).catch(err => console.log(err.message));
 }
+
+export const getProductsByCategoryId = category => {
+    return axios.get(`/api/products/category/${category}`, auth)
+    .then(res => res.data).catch(err => console.log(err.message));
+}

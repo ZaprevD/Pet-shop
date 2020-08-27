@@ -26,6 +26,19 @@ getTopCategoriesQuery = () => {
     })
 }
 
+getCategoryByNameQuery = name => {
+    const query = "SELECT Id FROM Category WHERE NAME = ?";
+    return new Promise((resolve, reject) => {
+        conn.query(query, [name], (error, results, fields) => {
+            if(error) {
+                reject(error);
+            }else {
+                resolve(results);
+            }
+        })
+    })
+}
+
 updateCategoryQuery = (name, id) => {
     const query = "UPDATE category SET Name = ? WHERE Id = ?"
     return new Promise((resolve, reject) => {
@@ -79,4 +92,4 @@ addNewSubCategoryQuery = (name, parentId) => {
 }
 
 module.exports ={getAllCategoriesQuery, getTopCategoriesQuery, updateCategoryQuery, deleteCategoryQuery,
-    addNewTopCategoryQuery, addNewSubCategoryQuery }
+    addNewTopCategoryQuery, addNewSubCategoryQuery, getCategoryByNameQuery }

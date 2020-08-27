@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Sidebar from "../../SidebarComponent/Sidebar";
 import { getAllCategories } from "../../adminFunctions";
-import Category from "./Category";
+import ListElement from "./ListElement";
 import "./categories.css";
 const Categories = props => {
 
@@ -9,26 +9,19 @@ const Categories = props => {
     useEffect(() => {
         fetchCategories();
     }, []);
+
     const fetchCategories = async () => {
         let data = await getAllCategories();
-        data.forEach(element => {
-            element.children = [];
-            for (var i = 0; i < data.length; i++) {
-                if (element.Id === data[i].ParentId) {
-                    element.children.push(data[i])
-                }
-            }
-        });
-        let topCategories = data.filter(el => el.ParentId === 0);
-        console.log(topCategories);
-        setCategories(topCategories);
+        setCategories(data);
     }
 
     return (
         <React.Fragment>
             <Sidebar />
             <div className="categories-container">
-                {categories.map(el => <Category key={el.Id} category={el} />)}
+                <ul className="categories-main-menu">
+                    {categories.map(el => <ListElement key={el.Id} category={el} />)}
+                </ul>
             </div>
         </React.Fragment>
     )

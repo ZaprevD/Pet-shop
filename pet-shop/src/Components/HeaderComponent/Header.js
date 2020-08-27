@@ -1,14 +1,13 @@
 import React from "react";
 import "./header.css";
 import { NavLink } from 'react-router-dom';
-import { logo } from "../../petlogo.jpg"
 const Header = props => {
 
     return (
         <div className="header-box">
             <div className="box-50">
                 <div className="image-holder">
-                    <img src={require('../../petlogo.jpg')} />
+                    <img src={require('../../petlogo.jpg')} alt="logo" />
                 </div>
             </div>
             <div className="box-50">

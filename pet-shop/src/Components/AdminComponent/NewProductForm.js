@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-
+import React, { useState, useEffect } from "react";
+import { getAllCategories } from "../adminFunctions";
 const NewProductForm = props => {
 
     const [name, setName] = useState("");
@@ -8,10 +8,29 @@ const NewProductForm = props => {
     const [onAction, setOnAction] = useState(false);
     const [image, setImage] = useState("");
     const [imageName, setImageName] = useState("");
+    const [categories, setCategories] = useState([]);
+    const [selectedCategory, setSelectedCategory] = useState("");
+
+    useEffect(() => {
+        fetchCategories();
+    }, []);
+
+    const fetchCategories = async () => {
+        const data = await getAllCategories();
+        if(data[0] !== undefined) {
+            setSelectedCategory(data[0].NAME)
+        }
+        setCategories(data);
+    }
+
     const onNameChange = e => setName(e.target.value);
     const onDescChange = e => setDesc(e.target.value);
     const onPriceChange = e => setPrice(e.target.value);
     const onActionChange = e => setOnAction(e.target.checked);
+    const onCategoryChange = e => {
+        console.log(e.target.value);
+        setSelectedCategory(e.target.value);
+    }
     const onImageChange = e => {
         setImage(e.target.files[0]);
         setImageName(e.target.value.substring(e.target.value.lastIndexOf("\\") + 1))
@@ -24,7 +43,8 @@ const NewProductForm = props => {
         fd.append("desc", desc);
         fd.append("price", price);
         fd.append("onAction", onAction);
-        fd.append("image", imageName)
+        fd.append("image", imageName);
+        fd.append("categoryName", selectedCategory);
         fd.append("productImage", image);
         await props.addNew(fd);
     }
@@ -50,6 +70,11 @@ const NewProductForm = props => {
                 <div className="input-holder">
                     <label htmlFor="slika">Слика</label>
                     <input onChange={onImageChange} type="file" name="productImage" id="slika" accept="image/*" placeholder="Image" />
+                </div>
+                <div className="input-holder" >
+                    <select onChange={onCategoryChange} value={selectedCategory} >
+                        {categories.map(el => <option key={el.Id} id={el.Id} >{el.NAME}</option>)}
+                    </select>
                 </div>
                 <div className="input-holder">
                     <button onClick={onSubmitHandler}>Додади Производ</button>

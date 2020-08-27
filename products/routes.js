@@ -4,6 +4,7 @@ const action = require("./action");
 
 router.get("/api/products", action.getAllProducts);
 router.get("/api/products/on-action", action.getProductsOnAction);
+router.get("/api/products/category/:id", action.getProductsByCategory)
 router.put("/api/product/:id", action.updateProduct);
 router.delete("/api/product/:id", action.deleteProduct);
 router.post("/api/product", action.addNewProduct);
