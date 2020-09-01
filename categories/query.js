@@ -66,7 +66,7 @@ deleteCategoryQuery = (id) => {
 }
 
 addNewTopCategoryQuery = (name) => {
-    const query = "INSERT INTO category (Name) VALUES (?)";
+    const query = "INSERT INTO category (NAME) VALUES (?)";
     return new Promise((resolve, reject) => {
         conn.query(query, [name], (error, results, fields) => {
             if (error) {

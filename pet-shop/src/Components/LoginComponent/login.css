@@ -2,10 +2,25 @@
     width: 50%;
     margin: 10px auto;
     height: 300px;
-    background: darkblue;
+    background: rgb(193, 193, 255, 0.8);
+    border-radius: 5px;
+    box-shadow: 8px 8px 15px 7px grey;
 }
 
-form {
+.container-100 {
+    width: 100%;
+    height: 100%;
+}
+
+.rope {
+    width: 1px;
+    margin: 1px auto;
+    border-left: 1px dashed rgb(122, 66, 66);
+    height: 100px;
+}
+
+
+.login-box form {
     width: 70%;
     height: 100%;
     padding: 5px;
@@ -19,13 +34,20 @@ form {
 form input {
     margin: 10px;
     width: 50%;
-    padding: 3px;
+    padding:7px 3px;
+    font-size: 15px;
+    border: none;
+    border-radius: 3px;
 }
 
 form  button {
     margin: 10px;
-    padding: 3px;
+    padding: 8px 3px;
     width: 50%;
+    color:white;
+    background: blue;
+    border:none;
+    border-radius: 5px;
 }
 .error-holder{
     width: 100%;

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { getAllCategories } from "../adminFunctions";
+import { productNameValidation, ErrorWindow, productPriceValidation } from "../Helper";
 const NewProductForm = props => {
 
     const [name, setName] = useState("");
@@ -10,6 +11,7 @@ const NewProductForm = props => {
     const [imageName, setImageName] = useState("");
     const [categories, setCategories] = useState([]);
     const [selectedCategory, setSelectedCategory] = useState("");
+    const [error, setError] = useState("");
 
     useEffect(() => {
         fetchCategories();
@@ -17,7 +19,7 @@ const NewProductForm = props => {
 
     const fetchCategories = async () => {
         const data = await getAllCategories();
-        if(data[0] !== undefined) {
+        if (data[0] !== undefined) {
             setSelectedCategory(data[0].NAME)
         }
         setCategories(data);
@@ -38,19 +40,28 @@ const NewProductForm = props => {
 
     const onSubmitHandler = async e => {
         e.preventDefault();
-        const fd = new FormData();
-        fd.append("name", name);
-        fd.append("desc", desc);
-        fd.append("price", price);
-        fd.append("onAction", onAction);
-        fd.append("image", imageName);
-        fd.append("categoryName", selectedCategory);
-        fd.append("productImage", image);
-        await props.addNew(fd);
+        productPriceValidation(price);
+        if (!productNameValidation(name).isOk) {
+            setError(productNameValidation(name).msg);
+        } else if (!productPriceValidation(price).isOk) {
+            setError(productPriceValidation(price).msg);
+        } else {
+            setError("");
+            const fd = new FormData();
+            fd.append("name", name);
+            fd.append("desc", desc);
+            fd.append("price", price);
+            fd.append("onAction", onAction);
+            fd.append("image", imageName);
+            fd.append("categoryName", selectedCategory);
+            fd.append("productImage", image);
+            await props.addNew(fd);
+        }
     }
 
     return (
         <div className="new-product-form">
+            {error !== "" ? <ErrorWindow message={error} hideErrorMessage={() => setError("")} /> : null}
             <form>
                 <div className="input-holder">
                     <input onChange={onNameChange} type="text" placeholder="Име на производ" />

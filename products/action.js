@@ -43,6 +43,7 @@ addNewProduct = async (req, res) => {
         req.body.onAction === "true" ? req.body.onAction = true : req.body.onAction = false;
         req.body.image === "" ? req.body.image = "No_Picture.jpg" : null;
         req.body.image.includes(" ") ? req.body.image = req.body.image.replace(/\s/g, '-') : null;
+        req.body.desc === "" ? req.body.desc = "Без опис" : null;
         const categoryId = await categoryQuery.getCategoryByNameQuery(req.body.categoryName);
         await query.addNewProductQuery(req.body.name, req.body.desc, req.body.price, req.body.onAction, categoryId[0].Id, req.body.image);
         if (req.files !== null) {

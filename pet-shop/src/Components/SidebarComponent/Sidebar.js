@@ -27,7 +27,7 @@ const Sidebar = props => {
                 <li>{props.location.pathname === "/admin/users" ? <Link to="/admin"> Products </Link> : <Link to="/admin/users"> Users </Link> }</li>
                 <li><Link to="/admin/categories">Categories</Link></li>
                 {props.location.pathname === "/admin/users" ? <li onClick={showNewUserFormHandler}>Add new user</li>:
-                props.location.pathname === "/admin/categories" ? <li>Add new category</li> : <li onClick={showNewProductFormHandler}>Add new product</li> }
+                props.location.pathname === "/admin/categories" ? null : <li onClick={showNewProductFormHandler}>Add new product</li> }
                 <li onClick={logOut}>Log Out</li>
             </ul>
             {showNewProductForm ? <NewProductForm addNew={newProductSubmitHandler} /> : null}

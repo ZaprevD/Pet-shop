@@ -9,11 +9,64 @@
 }
 
 #loader {
-  width: 150px;
-  height: 150px;
-  border: 5px solid transparent;
-  border-bottom: 5px solid blue;
+  width: 100px;
+  height: 100px;
+  border-top: 6px solid rgb(15, 129, 145) ;
+  border-bottom: 6px solid rgb(255, 166, 0) ;
+  border-left: 3px solid transparent ;
+  border-right: 3px solid transparent ;
   border-radius: 50%;
+  position: fixed;
+  left: 45%;
+  top: 42%;
+  animation: loading .4s linear infinite;
+  z-index: 999;
+}
+
+@keyframes loading{
+  100%{transform: rotate(360deg)};
+}
+
+.error-window {
+  width: 80%;
+  padding: 5px;
+  position: absolute;
+  left: 10%;
+  top: 30%;
+  background: rgb(255, 78, 78, 0.9);
+  color : black;
+  font-weight: bold;
+  text-align: center;
+  border-radius: 5px;
+}
+
+.error-window p {
+  margin: 5px;
+  padding: 5px;
+}
+
+.error-btn{
+  padding: 5px;
+  margin:10px
+}
+
+.info-window-alert {
+  width: 80%;
+  padding: 5px;
+  position: absolute;
+  left: 10%;
+  top: 30%;
+  background: #fff3cd;
+  border: 1px solid #ffeeba;
+  color : #856404;
+  font-weight: bold;
+  text-align: center;
+  border-radius: 5px;
+}
+
+.info-window-alert p {
+  margin: 5px;
+  padding: 5px;
 }
 
 .App-logo {

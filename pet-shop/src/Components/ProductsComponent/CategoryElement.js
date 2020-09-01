@@ -10,7 +10,6 @@ const CategoryElement = props => {
     return (
         <li>
             <NavLink id={props.category.Id} onClick={setProductsToShow} to={"/products/" + props.category.NAME}> {props.category.NAME}
-
             </NavLink>
         </li>
     )

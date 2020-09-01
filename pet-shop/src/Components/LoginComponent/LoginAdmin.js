@@ -1,18 +1,20 @@
 import React, { useState, useEffect } from "react";
 import "./login.css";
 import { adminLogin } from '../adminFunctions';
-import { isLoggedIn } from "../Helper";
+import { isLoggedIn, Loader } from "../Helper";
 const LoginAdmin = props => {
 
     const [error, setError] = useState("");
+    const [isLoading, setIsLoading] = useState(false);
 
     useEffect(() => {
-        if(isLoggedIn()){
+        if (isLoggedIn()) {
             window.location.href = "/admin";
         }
     })
 
     const onSubmitHandler = async e => {
+        setIsLoading(true);
         e.preventDefault();
         const data = {
             username: e.target[0].value,
@@ -20,28 +22,40 @@ const LoginAdmin = props => {
         }
         let status = await adminLogin(data);
         switch (parseInt(status)) {
-            case 200: window.location.href = "/admin";
+            case 200:
+                setIsLoading(false);
+                window.location.href = "/admin";
                 break;
-            case 404: setError("User not found");
+            case 404:
+                setIsLoading(false);
+                setError("User not found");
                 break;
-            case 400: setError("Invalid Password");
+            case 400:
+                setIsLoading(false);
+                setError("Invalid Password");
                 break;
-            default: setError(`Something went wrong. Please try again latter`);
-            break;
+            default:
+                setIsLoading(false);
+                setError(`Something went wrong. Please try again latter`);
+                break;
         }
 
     }
 
     return (
-        <div className="login-box">
-            <div className="info-window">
-                {error !== "" ? <div className="error-holder"><h3>{error}</h3></div> : <h3>Admin Login</h3>}
+        <div className="container-100">
+            <div className="rope"></div>
+            {isLoading ? <Loader /> : null}
+            <div className="login-box">
+                <div className="info-window">
+                    {error !== "" ? <div className="error-holder"><h3>{error}</h3></div> : <h3>Admin Login</h3>}
+                </div>
+                <form onSubmit={onSubmitHandler}>
+                    <input type="text" placeholder="Username" />
+                    <input type="password" placeholder="Password" />
+                    <button type="submit">Login</button>
+                </form>
             </div>
-            <form onSubmit={onSubmitHandler}>
-                <input type="text" placeholder="Username" />
-                <input type="password" placeholder="Password" />
-                <button type="submit">Login</button>
-            </form>
         </div>
     )
 

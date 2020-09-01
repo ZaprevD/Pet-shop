@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import CategoryElement from "./CategoryElement";
 import { getAllCategories, getProductsByCategoryId, getAllProducts } from "../adminFunctions";
+import { InfoWindow } from "../Helper";
 import { withRouter, NavLink } from "react-router-dom";
 import Product from "./Product";
 const CategoriesMenu = props => {
@@ -10,6 +11,7 @@ const CategoriesMenu = props => {
     const [errorMsg, setErrorMsg] = useState("");
 
     useEffect(() => {
+        props.history.push("/products/all");
         fetchCategories();
         setFirstView();
     }, []);
@@ -21,11 +23,15 @@ const CategoriesMenu = props => {
     const setFirstView = async () => {
         const allProducts = await getAllProducts();
         switch (allProducts.status) {
-            case 200: setProducts(allProducts.data)
+            case 200:
+                setErrorMsg("");
+                setProducts(allProducts.data)
                 break;
             case 500: setErrorMsg("Something went wrong, Please try again latter");
                 break;
-            default: setProducts(allProducts.data);
+            default:
+                setErrorMsg("");
+                setProducts(allProducts.data);
         }
         if (allProducts.data.length === 0) setErrorMsg("No products found!");
     }
@@ -33,7 +39,12 @@ const CategoriesMenu = props => {
     const callBack = async id => {
         if (id !== null) {
             const products = await getProductsByCategoryId(id);
-            setProducts(products);
+            if (products.length === 0) {
+                setErrorMsg("Not products found in this category!");
+            } else {
+                setErrorMsg("");
+                setProducts(products);
+            }
         } else {
             setFirstView();
         }
@@ -52,12 +63,9 @@ const CategoriesMenu = props => {
             </div>
             <div className="products-window-holder">
                 {errorMsg === "" ? products.map(el => <Product key={el.Id} desc={el.Description}
-                    price={el.Price} />) : errorMsg}
+                    name={el.Name} picture={el.Image_path} price={el.Price} />) : <InfoWindow message={errorMsg} />}
             </div>
         </div>
-
     )
-
 }
-
 export default withRouter(CategoriesMenu);

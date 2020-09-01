@@ -3,7 +3,6 @@ import { withRouter } from "react-router-dom";
 import { getAllProducts, updateProduct, deleteProduct, addNewProduct } from "../adminFunctions";
 import ProductCart from "./ProductCart";
 import Sidebar from "../SidebarComponent/Sidebar";
-import { Loader, isLoggedIn } from "../Helper";
 import "./admin.css";
 const Admin = props => {
 

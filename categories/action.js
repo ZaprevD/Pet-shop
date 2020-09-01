@@ -12,8 +12,8 @@ getAllCategories = async (req, res) => {
 
 updateCategory = async (req, res) => {
     try {
-        await query.updateCategoryQuery(req.body.name);
-        res.status(200).send("Product Updated");
+        await query.updateCategoryQuery(req.body.name, req.params.id);
+        res.status(200).send("Category Updated");
     } catch (error) {
         console.log(error);
     }
@@ -22,7 +22,7 @@ updateCategory = async (req, res) => {
 deleteCategory = async (req, res) => {
     try {
         await query.deleteCategoryQuery(req.params.id);
-        res.status(200).send("Product Deleted!");
+        res.status(200).send("Category Deleted!");
     } catch (error) {
         console.log(error);
     }
