@@ -1,7 +1,7 @@
 const conn = require("../database");
 
 getAllProductsQuery = () => {
-    const query = `SELECT * FROM product`;
+    const query = `SELECT * FROM product ORDER BY CreatedOn DESC`;
     return new Promise((resolve, reject) => {
         conn.query(query, (error, results, fields) => {
             if (error) {

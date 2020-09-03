@@ -125,13 +125,25 @@
     width: 90%;
 }
 
+.input-holder-flex {
+    width: 90%;
+    display: flex;
+    justify-content: space-between;
+    margin:10px 0;
+}
+
 .input-holder input, .input-holder textarea {
     width: 100%;
     margin: 10px 0;
 }
 
+.input-holder input[name="productImage"] {
+    margin: 3px 0
+}
+
 .input-holder input[type="checkbox"] {
     width: 50%;
+    margin-bottom: 20px;
 }
 
 .input-holder button {

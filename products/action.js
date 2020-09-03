@@ -4,8 +4,7 @@ const categoryQuery = require("../categories/query");
 getAllProducts = async (req, res) => {
     try {
         let data = await query.getAllProductsQuery();
-        let clear = data.reverse();
-        res.status(200).send(clear);
+        res.status(200).send(data);
     } catch (error) {
         console.log(error);
     }

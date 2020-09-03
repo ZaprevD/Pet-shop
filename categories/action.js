@@ -12,8 +12,13 @@ getAllCategories = async (req, res) => {
 
 updateCategory = async (req, res) => {
     try {
-        await query.updateCategoryQuery(req.body.name, req.params.id);
-        res.status(200).send("Category Updated");
+        const dbCategory = await query.getCategoryByNameQuery(req.body.name);
+        if (dbCategory[0] === undefined || dbCategory[0].Id === parseInt(req.params.id)) {
+            await query.updateCategoryQuery(req.body.name, req.params.id);
+            res.status(200).send("Category Updated");
+        } else {
+            res.status(409).send(`Category with this name alredy exists`);
+        }
     } catch (error) {
         console.log(error);
     }
@@ -30,8 +35,13 @@ deleteCategory = async (req, res) => {
 
 addNewTopCategory = async (req, res) => {
     try {
-        await query.addNewTopCategoryQuery(req.body.name);
-        res.status(200).send(`Категоријата е додадена`);
+        const dbCategory = await query.getCategoryByNameQuery(req.body.name);
+        if (dbCategory[0] === undefined) {
+            await query.addNewTopCategoryQuery(req.body.name);
+            res.status(200).send(`Категоријата е додадена`);
+        } else {
+            res.status(409).send(`Категоријата постои!`);
+        }
     } catch (error) {
         console.log(error)
     }
@@ -54,7 +64,7 @@ getTopCategories = async (req, res) => {
         res.status(500).send(error.message);
     }
 }
-
-
-module.exports = { getTopCategories, addNewSubCategory, addNewTopCategory, deleteCategory, getAllCategories,
-     updateCategory }
+module.exports = {
+    getTopCategories, addNewSubCategory, addNewTopCategory, deleteCategory, getAllCategories,
+    updateCategory
+}

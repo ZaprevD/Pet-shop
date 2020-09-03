@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "./login.css";
 import { adminLogin } from '../adminFunctions';
-import { isLoggedIn, Loader } from "../Helper";
+import { isLoggedIn, Loader, ErrorWindow } from "../Helper";
 const LoginAdmin = props => {
 
     const [error, setError] = useState("");
@@ -12,6 +12,8 @@ const LoginAdmin = props => {
             window.location.href = "/admin";
         }
     })
+
+    const hideError = () => setError("");
 
     const onSubmitHandler = async e => {
         setIsLoading(true);
@@ -37,9 +39,7 @@ const LoginAdmin = props => {
             default:
                 setIsLoading(false);
                 setError(`Something went wrong. Please try again latter`);
-                break;
         }
-
     }
 
     return (
@@ -48,7 +48,8 @@ const LoginAdmin = props => {
             {isLoading ? <Loader /> : null}
             <div className="login-box">
                 <div className="info-window">
-                    {error !== "" ? <div className="error-holder"><h3>{error}</h3></div> : <h3>Admin Login</h3>}
+                    <h3>Admin Login</h3>
+                    {error !== "" ? <ErrorWindow message={error} hideErrorMessage={hideError} /> : null}
                 </div>
                 <form onSubmit={onSubmitHandler}>
                     <input type="text" placeholder="Username" />

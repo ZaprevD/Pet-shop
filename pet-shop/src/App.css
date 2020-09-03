@@ -38,16 +38,26 @@
   font-weight: bold;
   text-align: center;
   border-radius: 5px;
+  z-index: 9999;
 }
 
 .error-window p {
-  margin: 5px;
+  margin: 5px 0 15px 0;
   padding: 5px;
 }
 
 .error-btn{
-  padding: 5px;
-  margin:10px
+  padding: 3px;
+  width: 50px;
+  border: none;
+  border-radius: 3px;
+  background: rgb(31, 255, 225);
+  margin:10px 0 5px 0;
+  cursor: pointer;
+}
+
+.error-btn:hover {
+  background: rgb(255, 58, 58);
 }
 
 .info-window-alert {

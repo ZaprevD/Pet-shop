@@ -18,6 +18,15 @@ export const getCurrentUser = () => {
     return decoded.user;
 }
 
+export const isTokenExpired = () => {
+    let token = localStorage.authToken;
+    let decoded = jwt_decode(token);
+    if (Date.now() >= decoded.exp * 1000) {
+        return true;
+    }
+    return false;
+}
+
 const hasNumbers = (t) => {
     return /\d/.test(t);
 }
@@ -41,6 +50,7 @@ export const emailValidation = email => {
 }
 
 export const usernameValidation = username => {
+    username.trim();
     if (username.length < 3) {
         return { msg: `check your username`, isOk: false };
     } else if (username.length > 20) {
@@ -50,6 +60,16 @@ export const usernameValidation = username => {
 }
 
 export const passwordValidation = password => {
+    if (password.length < 5) {
+        return { msg: `your password must be at least 5 characters`, isOk: false };
+    } else if (password.length > 20) {
+        return { msg: `your password cannot be longer than 20 characters`, isOk: false };
+    }
+    return { msg: "", isOk: true };
+}
+
+export const passwordValidationForExistingUser = password => {
+    if (password === "") return { msg: "", isOk: true };
     if (password.length < 5) {
         return { msg: `your password must be at least 5 characters`, isOk: false };
     } else if (password.length > 20) {

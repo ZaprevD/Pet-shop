@@ -12,10 +12,10 @@ const Header = props => {
             </div>
             <div className="box-50">
                 <ul className="main-list">
-                    <NavLink exact to="/"><li>Home</li></NavLink>
-                    <NavLink to="/about"><li>About us</li></NavLink>
-                    <NavLink to="/products"><li>Products</li></NavLink>
-                    <NavLink to="/contact"><li>Contact</li></NavLink>
+                    <NavLink exact to="/"><li>Дома</li></NavLink>
+                    <NavLink to="/about"><li>За нас</li></NavLink>
+                    <NavLink to="/products"><li>Производи</li></NavLink>
+                    <NavLink to="/contact"><li>Контакт</li></NavLink>
                 </ul>
             </div>
         </div>

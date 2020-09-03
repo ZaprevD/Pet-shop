@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { passwordValidation, usernameValidation, emailValidation, ErrorWindow } from "../../Helper";
+import { passwordValidationForExistingUser, usernameValidation, emailValidation, ErrorWindow } from "../../Helper";
 const EditUser = props => {
 
     const [email, setEmail] = useState(props.email);
@@ -18,8 +18,8 @@ const EditUser = props => {
             pass: password,
             email: email
         }
-        if (!passwordValidation(data.pass).isOk) {
-            setError(passwordValidation(data.pass).msg);
+        if (!passwordValidationForExistingUser(data.pass).isOk) {
+            setError(passwordValidationForExistingUser(data.pass).msg);
         } else if (!usernameValidation(data.username).isOk) {
             setError(usernameValidation(data.username).msg);
         } else if (!emailValidation(data.email).isOk) {

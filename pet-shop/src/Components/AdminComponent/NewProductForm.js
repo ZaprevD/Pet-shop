@@ -19,10 +19,12 @@ const NewProductForm = props => {
 
     const fetchCategories = async () => {
         const data = await getAllCategories();
-        if (data[0] !== undefined) {
-            setSelectedCategory(data[0].NAME)
+        if (data !== undefined) {
+            if (data.data[0] !== undefined) {
+                setSelectedCategory(data.data[0].NAME);
+            }
         }
-        setCategories(data);
+        setCategories(data.data);
     }
 
     const onNameChange = e => setName(e.target.value);
@@ -40,7 +42,6 @@ const NewProductForm = props => {
 
     const onSubmitHandler = async e => {
         e.preventDefault();
-        productPriceValidation(price);
         if (!productNameValidation(name).isOk) {
             setError(productNameValidation(name).msg);
         } else if (!productPriceValidation(price).isOk) {
@@ -82,7 +83,8 @@ const NewProductForm = props => {
                     <label htmlFor="slika">Слика</label>
                     <input onChange={onImageChange} type="file" name="productImage" id="slika" accept="image/*" placeholder="Image" />
                 </div>
-                <div className="input-holder" >
+                <div className="input-holder-flex" >
+                    <p>Категорија</p>
                     <select onChange={onCategoryChange} value={selectedCategory} >
                         {categories.map(el => <option key={el.Id} id={el.Id} >{el.NAME}</option>)}
                     </select>
@@ -93,7 +95,5 @@ const NewProductForm = props => {
             </form>
         </div>
     )
-
 }
-
 export default NewProductForm;

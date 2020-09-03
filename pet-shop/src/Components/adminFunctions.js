@@ -36,6 +36,11 @@ export const getAllProducts = () => {
         });
 }
 
+export const getProductsByCategoryId = category => {
+    return axios.get(`/api/products/category/${category}`)
+        .then(res => res.data).catch(err => console.log(err.message));
+}
+
 export const updateProduct = (name, desc, price, id, action) => {
     const data = { name: name, desc: desc, price: price, on_action: action }
     return axios.put(`/api/product/${id}`, data, auth)
@@ -73,12 +78,24 @@ export const getProductsOnAction = () => {
 
 export const editUser = (data, id) => {
     return axios.put(`/api/user/${id}`, data, auth)
-        .then(res => res.data).catch(err => console.log(err.message));
+        .then(res => {
+            return { status: res.status, data: res.data }
+        }).catch(err => {
+            const msg = err.message;
+            let status = msg.substr(msg.indexOf("code") + 5);
+            return { status: status };
+        });
 }
 
 export const registerUser = (data) => {
     return axios.post(`/api/register`, data, auth)
-        .then(res => res.data).catch(err => err.message);
+        .then(res => {
+            return { status: res.status, data: res.data }
+        }).catch(err => {
+            const msg = err.message;
+            let status = msg.substr(msg.indexOf("code") + 5);
+            return { status: status };
+        });
 }
 
 export const deleteUser = id => {
@@ -99,8 +116,13 @@ export const uploadFile = (id, file) => {
 }
 
 export const getAllCategories = () => {
-    return axios.get(`/categories`, auth).then(res => res.data)
-        .catch(err => console.log(err.message));
+    return axios.get(`/categories`, auth).then(res => {
+        return { status: res.status, data: res.data }
+    }).catch(err => {
+        const msg = err.message;
+        let status = msg.substr(msg.indexOf("code") + 5);
+        return { status: status };
+    });
 }
 
 export const getTopCategories = () => {
@@ -109,7 +131,11 @@ export const getTopCategories = () => {
 }
 export const addTopCategory = (data) => {
     return axios.post('/top-cateogry', data, auth)
-        .then(res => console.log(res.data)).catch(err => console.log(err.message));
+        .then(res => data = { status: res.status, data: res.data }).catch(err => {
+            const msg = err.message;
+            let status = msg.substr(msg.indexOf("code") + 5);
+            return { status: status };
+        });
 }
 
 export const addSubCategory = (data, id) => {
@@ -119,15 +145,17 @@ export const addSubCategory = (data, id) => {
 
 export const editCategory = (data, id) => {
     return axios.patch(`/edit-category/${id}`, data, auth)
-    .then(res => console.log(res.data)).catch(err => console.log(err.message));
+        .then(res => {
+            return { status: res.status, data: res.data }
+        }).catch(err => {
+            const msg = err.message;
+            let status = msg.substr(msg.indexOf("code") + 5);
+            return { status: status };
+        });
 }
 
 export const deleteCategory = id => {
-    return axios.delete(`/delete-category/${id}`,auth)
-    .then(res => res.data).catch(err => console.log(err.message));
+    return axios.delete(`/delete-category/${id}`, auth)
+        .then(res => res.data).catch(err => console.log(err.message));
 }
 
-export const getProductsByCategoryId = category => {
-    return axios.get(`/api/products/category/${category}`, auth)
-    .then(res => res.data).catch(err => console.log(err.message));
-}
