@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { passwordValidationForExistingUser, usernameValidation, emailValidation, ErrorWindow } from "../../Helper";
+
 const EditUser = props => {
 
     const [email, setEmail] = useState(props.email);
@@ -17,7 +18,7 @@ const EditUser = props => {
             username: username,
             pass: password,
             email: email
-        }
+        };
         if (!passwordValidationForExistingUser(data.pass).isOk) {
             setError(passwordValidationForExistingUser(data.pass).msg);
         } else if (!usernameValidation(data.username).isOk) {
@@ -52,8 +53,6 @@ const EditUser = props => {
                 </div>
             </div>
         </React.Fragment>
-    )
-
-}
-
+    );
+};
 export default EditUser;

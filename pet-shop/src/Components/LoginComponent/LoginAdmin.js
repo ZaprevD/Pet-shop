@@ -10,8 +10,8 @@ const LoginAdmin = props => {
     useEffect(() => {
         if (isLoggedIn()) {
             window.location.href = "/admin";
-        }
-    })
+        };
+    });
 
     const hideError = () => setError("");
 
@@ -21,7 +21,7 @@ const LoginAdmin = props => {
         const data = {
             username: e.target[0].value,
             password: e.target[1].value
-        }
+        };
         let status = await adminLogin(data);
         switch (parseInt(status)) {
             case 200:
@@ -39,8 +39,8 @@ const LoginAdmin = props => {
             default:
                 setIsLoading(false);
                 setError(`Something went wrong. Please try again latter`);
-        }
-    }
+        };
+    };
 
     return (
         <div className="container-100">
@@ -58,8 +58,7 @@ const LoginAdmin = props => {
                 </form>
             </div>
         </div>
-    )
-
-}
+    );
+};
 
 export default LoginAdmin;

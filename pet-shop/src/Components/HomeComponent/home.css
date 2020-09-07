@@ -27,9 +27,6 @@
     left: 0;
 }
 
-
-
-
 .product-image-holder {
     width: 100%;
     height: 100%;
@@ -50,4 +47,11 @@
 .back-img{
     width: 100%;
     height: 100%;
+}
+
+
+@media(max-width: 620px) {
+    .cards-slider {
+        height: 300px;
+    }
 }

@@ -115,3 +115,60 @@
   height: 85%;
   text-align: center;
 }
+
+.hamburger-menu-icon{
+  display: none;
+}
+
+@media(max-width: 620px){ 
+  
+  .menu-window {
+    display: none;
+    position: absolute;
+    width: 50%;
+    height: 100%;
+    z-index: 9999;
+    top: 30%;
+  }
+
+  .hamburger-menu-icon {
+    display: block;
+    width: 20px;
+    height: 50px;
+    z-index: 9999;
+    color:black;
+  }
+
+  .paths-menu:hover .menu-window {
+    display: block;
+  }
+
+  .paths-menu {
+    width: 8%;
+  }
+
+  .products-view {
+    padding-left: 0;
+    min-height: auto;
+    padding-top: 15%;
+  }
+
+  .product-holder-box {
+    width: 99%;
+    margin: 10px auto;
+  }
+}
+
+@media (min-width: 621px) and (max-width: 970px){
+
+  .product-holder-box {
+    width: 90%;
+    margin: 10px auto;
+  }
+}
+  @media (min-width: 971px) and (max-width: 1262px){
+    .product-holder-box {
+      width: 80%;
+      margin: 10px auto;
+    }
+ }

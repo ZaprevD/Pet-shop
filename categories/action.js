@@ -1,14 +1,13 @@
 const query = require("./query");
-
-
+    
 getAllCategories = async (req, res) => {
     try {
         let data = await query.getAllCategoriesQuery();
         res.status(200).send(data);
     } catch (error) {
         console.log(error);
-    }
-}
+    };
+};
 
 updateCategory = async (req, res) => {
     try {
@@ -21,8 +20,8 @@ updateCategory = async (req, res) => {
         }
     } catch (error) {
         console.log(error);
-    }
-}
+    };
+};
 
 deleteCategory = async (req, res) => {
     try {
@@ -30,8 +29,8 @@ deleteCategory = async (req, res) => {
         res.status(200).send("Category Deleted!");
     } catch (error) {
         console.log(error);
-    }
-}
+    };
+};
 
 addNewTopCategory = async (req, res) => {
     try {
@@ -44,8 +43,8 @@ addNewTopCategory = async (req, res) => {
         }
     } catch (error) {
         console.log(error)
-    }
-}
+    };
+};
 
 addNewSubCategory = async (req, res) => {
     try {
@@ -53,8 +52,8 @@ addNewSubCategory = async (req, res) => {
         res.status(200).send(`Категоријата е додадена`);
     } catch (error) {
         res.status(500).send(error.message);
-    }
-}
+    };
+};
 
 getTopCategories = async (req, res) => {
     try {
@@ -62,8 +61,8 @@ getTopCategories = async (req, res) => {
         res.status(200).send(topCategories);
     } catch (error) {
         res.status(500).send(error.message);
-    }
-}
+    };
+};
 module.exports = {
     getTopCategories, addNewSubCategory, addNewTopCategory, deleteCategory, getAllCategories,
     updateCategory

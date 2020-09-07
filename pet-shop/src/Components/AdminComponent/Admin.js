@@ -46,19 +46,19 @@ const Admin = props => {
         setIsLoading(true);
         await updateProduct(name, desc, price, id, actionProduct);
         fetchData();
-    }
+    };
 
     const deleteProductHandler = async id => {
         setIsLoading(true);
         await deleteProduct(id);
         fetchData();
-    }
+    };
 
     const addProductHandler = async data => {
         setIsLoading(true);
         await addNewProduct(data);
         fetchData();
-    }
+    };
 
     return (
         <React.Fragment>
@@ -70,6 +70,6 @@ const Admin = props => {
                 }
             </div>
         </React.Fragment>
-    )
-}
+    );
+};
 export default withRouter(Admin);

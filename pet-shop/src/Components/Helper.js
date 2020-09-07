@@ -4,32 +4,32 @@ import jwt_decode from "jwt-decode";
 export const Loader = props => {
     return (
         <div id="loader"></div>
-    )
-}
+    );
+};
 
 export const isLoggedIn = () => {
     if (localStorage.authToken) return true;
     return false;
-}
+};
 
 export const getCurrentUser = () => {
     let token = localStorage.authToken;
     let decoded = jwt_decode(token);
     return decoded.user;
-}
+};
 
 export const isTokenExpired = () => {
     let token = localStorage.authToken;
     let decoded = jwt_decode(token);
     if (Date.now() >= decoded.exp * 1000) {
         return true;
-    }
+    };
     return false;
-}
+};
 
 const hasNumbers = (t) => {
     return /\d/.test(t);
-}
+};
 
 export const emailValidation = email => {
     let username = email.substr(0, email.indexOf("@"));
@@ -45,9 +45,9 @@ export const emailValidation = email => {
         }
     } else {
         return { msg: "Check your email", isOk: false };
-    }
+    };
     return { msg: "", isOk: true };
-}
+};
 
 export const usernameValidation = username => {
     username.trim();
@@ -55,18 +55,18 @@ export const usernameValidation = username => {
         return { msg: `check your username`, isOk: false };
     } else if (username.length > 20) {
         return { msg: `check your username`, isOk: false };;
-    }
+    };
     return { msg: "", isOk: true };
-}
+};
 
 export const passwordValidation = password => {
     if (password.length < 5) {
         return { msg: `your password must be at least 5 characters`, isOk: false };
     } else if (password.length > 20) {
         return { msg: `your password cannot be longer than 20 characters`, isOk: false };
-    }
+    };
     return { msg: "", isOk: true };
-}
+};
 
 export const passwordValidationForExistingUser = password => {
     if (password === "") return { msg: "", isOk: true };
@@ -74,9 +74,9 @@ export const passwordValidationForExistingUser = password => {
         return { msg: `your password must be at least 5 characters`, isOk: false };
     } else if (password.length > 20) {
         return { msg: `your password cannot be longer than 20 characters`, isOk: false };
-    }
+    };
     return { msg: "", isOk: true };
-}
+};
 
 export const productNameValidation = name => {
     if (name !== "") {
@@ -86,8 +86,8 @@ export const productNameValidation = name => {
         return { msg: ``, isOk: true };
     } else {
         return { msg: `Please enter a name for this product`, isOk: false };
-    }
-}
+    };
+};
 
 export const categoryNameValidation = name => {
     if (name !== "") {
@@ -97,16 +97,16 @@ export const categoryNameValidation = name => {
         return { msg: ``, isOk: true };
     } else {
         return { msg: `Please enter a name for this category`, isOk: false };
-    }
-}
+    };
+};
 
 export const productPriceValidation = price => {
     price = parseInt(price);
     if (isNaN(price)) {
         return { msg: `Please set price for this product`, isOk: false };
-    }
+    };
     return { msg: ``, isOk: true };
-}
+};
 
 export const ErrorWindow = props => {
     return (
@@ -114,13 +114,13 @@ export const ErrorWindow = props => {
             <p>{props.message}</p>
             <button className="error-btn" onClick={props.hideErrorMessage}>OK</button>
         </div>
-    )
-}
+    );
+};
 
 export const InfoWindow = props => {
     return (
         <div className="info-window-alert">
             <p>{props.message}</p>
         </div>
-    )
-}
+    );
+};

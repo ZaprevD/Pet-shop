@@ -100,6 +100,6 @@ const Users = props => {
                     : <ErrorWindow message={message} hideErrorMessage={hideError} />}
             </div>
         </React.Fragment>
-    )
-}
+    );
+};
 export default Users;

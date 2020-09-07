@@ -22,7 +22,7 @@ export const adminLogin = (data) => {
 
 export const logOut = () => {
     localStorage.removeItem("authToken");
-    window.location.href = "/";
+    window.location.href = "/loginadmin";
 }
 
 export const getAllProducts = () => {

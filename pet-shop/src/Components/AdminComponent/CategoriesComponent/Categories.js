@@ -25,7 +25,7 @@ const Categories = props => {
         let data = await getAllCategories();
         setCategories(data.data);
         setIsLoading(false);
-    }
+    };
 
     const hideErr = () => setError("");
 
