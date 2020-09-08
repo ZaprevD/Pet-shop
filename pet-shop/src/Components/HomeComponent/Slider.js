@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { getProductsOnAction } from "../adminFunctions";
 import ProductWindow from "./ProductWindow";
-
+import {FaAngleLeft, FaAngleRight} from 'react-icons/fa';
 const Slider = props => {
 
     const [productsOnAction, setProductsOnAction] = useState([]);
-    const [property, setProperty] = useState({});
+    const [percentageX, setPercentageX] = useState(0);
 
     useEffect(() => {
         fetchProducts();
@@ -17,42 +17,33 @@ const Slider = props => {
             element.index = i;
         });
         setProductsOnAction(data);
-        setProperty(data[0]);
     }
 
-
-
-    const handleNext = () => {
-        const newIndex = property.index + 1;
-        if (productsOnAction[newIndex] !== undefined) {
-            setProperty(productsOnAction[newIndex]);
-        } else {
-            setProperty(productsOnAction[0]);
-        }
-
+    const handleNext = e => {
+        percentageX === -100 * (productsOnAction.length -1 ) ? setPercentageX(0) : setPercentageX(percentageX - 100);
     }
-    const handlePrevius = () => {
-        const newIndex = property.index - 1;
-        if (productsOnAction[newIndex] !== undefined) {
-            setProperty(productsOnAction[newIndex]);
-        } else {
-            setProperty(productsOnAction[productsOnAction.length - 1]);
-        }
+
+    const handlePrevius = e => {
+        percentageX === 0 ? setPercentageX(-100 * (productsOnAction.length -1)) : setPercentageX(percentageX +100);
     }
 
     return (
         <div className="cards-slider">
-            <button onClick={handleNext}>Next</button>
-            <button onClick={handlePrevius}>Prev</button>
+            <div>
+                <div className="slide-btns" id="right-btn" onClick={handleNext}>
+                    <FaAngleRight className="icon-arrow" />
+                </div>
+                <div className="slide-btns" id="left-btn" onClick={handlePrevius}>
+                    <FaAngleLeft className="icon-arrow" />
+                </div>
+            </div>
             <div className="cards-slider-wrapper" style={{
-                transform: `translateX(-${property.index * (100 / productsOnAction.length + 78.5)}%)`
+                transform: `translateX(${percentageX}%)`
             }}>
                 {productsOnAction.map(element => <ProductWindow id={element.id} imgPath={element.Image_path}
-                 key={element.Id} name={element.Name} />)}
+                    key={element.Id} name={element.Name} />)}
             </div>
         </div>
     )
-
 }
-
 export default Slider;

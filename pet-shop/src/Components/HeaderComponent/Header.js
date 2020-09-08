@@ -2,6 +2,7 @@ import React from "react";
 import "./header.css";
 import { FaBars } from "react-icons/fa";
 import { NavLink } from 'react-router-dom';
+
 const Header = props => {
 
     return (
@@ -13,7 +14,6 @@ const Header = props => {
             </div>
             <div className="box-50">
                 <div className="small-menu">
-
                 <FaBars className="hamburger-menu-bars" />
                     <ul className="main-list">
                         <NavLink exact to="/"><li>Дома</li></NavLink>
@@ -25,7 +25,5 @@ const Header = props => {
             </div>
         </div>
     )
-
 }
-
 export default Header;

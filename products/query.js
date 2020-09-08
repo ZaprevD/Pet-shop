@@ -27,7 +27,7 @@ getProductsByCategoryIdQuery = (categoryId) => {
 };
 
 getProductsOnActionQuery = () => {
-    const query = "SELECT * FROM product WHERE On_Action = true";
+    const query = "SELECT * FROM product WHERE On_Action = true ORDER BY UpdatedOn DESC";
     return new Promise((resolve, reject) => {
         conn.query(query, (error, results, fields) => {
             if(error) {
@@ -40,7 +40,7 @@ getProductsOnActionQuery = () => {
 };
 
 updateProductQuery = (name, desc, price, id, onAction) => {
-    const query = "UPDATE product SET Name = ?, Description = ?, Price = ?, On_Action = ? WHERE Id = ?"
+    const query = "UPDATE product SET Name = ?, Description = ?, Price = ?, On_Action = ?, UpdatedOn = NOW() WHERE Id = ?"
     return new Promise((resolve, reject) => {
         conn.query(query, [name, desc, price, onAction, id], (error, results, fields) => {
             if (error) {

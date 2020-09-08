@@ -1,13 +1,13 @@
-import React  from "react";
+import React from "react";
 import "./home.css";
 import Slider from "./Slider";
 const Home = props => {
 
     return (
-        <React.Fragment>
-            <h1>Home</h1>
-            <Slider />
-        </React.Fragment>
+            <div className="home-view-container">
+                <h1>Производи на акција</h1>
+                <Slider />
+            </div>
     )
 }
 
