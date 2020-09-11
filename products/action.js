@@ -67,7 +67,7 @@ changeProductPicture = async (req, res) => {
         if (req.files !== null) {
             const file = req.files.productImage;
             file.name.includes(" ") ? file.name = file.name.replace(/\s/g, '-') : null;
-            file.mv(`pet-shop/public/products-images/${file.name}`, err => {
+            await file.mv(`pet-shop/public/products-images/${file.name}`, err => {
                 if (err) {
                     console.log(err);
                     return res.status(500).send(err);

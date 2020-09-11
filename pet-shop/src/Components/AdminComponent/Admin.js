@@ -44,8 +44,14 @@ const Admin = props => {
 
     const updateProductHandler = async (name, desc, price, id, actionProduct) => {
         setIsLoading(true);
-        await updateProduct(name, desc, price, id, actionProduct);
-        fetchData();
+        let data = await updateProduct(name, desc, price, id, actionProduct);
+        if(data.status !== 200) {
+            setMessage("Something went wrong, please try again latter");
+            setIsLoading(false);
+        }else{
+           await fetchData();
+           setIsLoading(false);
+        }
     };
 
     const deleteProductHandler = async id => {
@@ -64,7 +70,7 @@ const Admin = props => {
         <React.Fragment>
             <Sidebar newProduct={addProductHandler} />
             <div className="products-box">
-                { isLoading ? <Loader /> : null }
+                {isLoading ? <Loader /> : null}
                 {message === "" ? products.map(el => <ProductCart key={el.Id} id={el.Id} delete={deleteProductHandler}
                     imgPath={el.Image_path} name={el.Name} update={updateProductHandler} onAction={el.On_Action} desc={el.Description} price={el.Price} />) : <h3>{message}</h3>
                 }

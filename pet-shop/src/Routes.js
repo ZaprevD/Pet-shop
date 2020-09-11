@@ -8,16 +8,20 @@ import Admin from "./Components/AdminComponent/Admin";
 import Header from "./Components/HeaderComponent/Header";
 import Users from "./Components/AdminComponent/UsersComponent/Users";
 import Categories from "./Components/AdminComponent/CategoriesComponent/Categories";
+import ForgotUsername from "./Components/LoginComponent/ForgotUsername";
+import ForgotPassword from "./Components/LoginComponent/ForgotPassword";
 import { Route, BrowserRouter } from "react-router-dom";
 
 export default () =>
     <BrowserRouter>
         <Header />
         <Route exact path="/" component={Home} />
-        <Route  path="/products" component={Products} />
+        <Route path="/products" component={Products} />
         <Route exact path="/about" component={About} />
         <Route exact path="/contact" component={Contact} />
         <Route exact path="/loginadmin" component={LoginAdmin} />
+        <Route exact path="/loginadmin/forgot/username" component={ForgotUsername} />
+        <Route exact path="/loginadmin/forgot/password" component={ForgotPassword} />
         <Route exact path="/admin" component={Admin} />
         <Route exact path="/admin/users" component={Users} />
         <Route exact path="/admin/categories" component={Categories} />

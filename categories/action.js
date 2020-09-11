@@ -55,15 +55,8 @@ addNewSubCategory = async (req, res) => {
     };
 };
 
-getTopCategories = async (req, res) => {
-    try {
-        let topCategories = await query.getTopCategoriesQuery();
-        res.status(200).send(topCategories);
-    } catch (error) {
-        res.status(500).send(error.message);
-    };
-};
+
 module.exports = {
-    getTopCategories, addNewSubCategory, addNewTopCategory, deleteCategory, getAllCategories,
+    addNewSubCategory, addNewTopCategory, deleteCategory, getAllCategories,
     updateCategory
 }

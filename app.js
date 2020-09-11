@@ -8,7 +8,8 @@ const upload = require("express-fileupload");
 const cors = require('cors');
 const app = express();                                                               
 
-const publicPaths = ["/api/login", "/api/products", "/api/products/on-action", "/categories", /^\/api\/products\/category\/.*/];
+const publicPaths = ["/api/login", '/api/resetpassword',
+'/api/forgot/username', "/api/products", "/api/products/on-action", "/api/categories", /^\/api\/products\/category\/.*/];
 app.use(cors());
 app.use(upload());
 app.use(jwt({ secret: "test", algorithms: ['HS256'] }).unless({ path: publicPaths }));

@@ -8,4 +8,6 @@ router.put("/api/user/:id", validation.passwordValidationForExistingUser, action
 router.post("/api/register", validation.emailValidation, validation.usernameValidation,
 validation.passwordValidation, action.registerUser);
 router.delete(`/api/user/:id`, action.deleteUser);
+router.put(`/api/resetpassword`, action.sendResetPasswordEmail);
+router.put("/api/forgot/username", action.sendResetUsernameEmail);
 module.exports = router;

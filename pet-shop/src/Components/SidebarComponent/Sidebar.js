@@ -4,6 +4,7 @@ import { logOut } from "../adminFunctions";
 import NewProductForm from "../AdminComponent/NewProductForm";
 import NewUserForm from "../AdminComponent/UsersComponent/NewUserForm";
 import { Link, withRouter } from "react-router-dom";
+
 const Sidebar = props => {
 
     const [showNewProductForm, setShowNewProductForm] = useState(false);
@@ -24,17 +25,15 @@ const Sidebar = props => {
     return (
         <div className="sidebar-window">
             <ul>
-                <li>{props.location.pathname === "/admin/users" ? <Link to="/admin"> Products </Link> : <Link to="/admin/users"> Users </Link> }</li>
-                <li><Link to="/admin/categories">Categories</Link></li>
-                {props.location.pathname === "/admin/users" ? <li onClick={showNewUserFormHandler}>Add new user</li>:
-                props.location.pathname === "/admin/categories" ? null : <li onClick={showNewProductFormHandler}>Add new product</li> }
-                <li onClick={logOut}>Log Out</li>
+                <li>{props.location.pathname === "/admin/users" ? <Link to="/admin"> Производи </Link> : <Link to="/admin/users"> Корисници </Link> }</li>
+                <li><Link to="/admin/categories">Категории</Link></li>
+    {props.location.pathname === "/admin/users" ? <li onClick={showNewUserFormHandler}>{!showNewUserForm ? "Додади нов корисник" : "Откажи"}</li>:
+                props.location.pathname === "/admin/categories" ? null : <li onClick={showNewProductFormHandler}>{!showNewProductForm ? "Додади нов производ" : "Откажи"}</li> }
+                <li onClick={logOut}>Одјави се</li>
             </ul>
             {showNewProductForm ? <NewProductForm addNew={newProductSubmitHandler} /> : null}
             {showNewUserForm ? <NewUserForm newUserSubmit={newUserSubmitHandler} /> : null}
         </div>
     )
-
 }
-
 export default withRouter(Sidebar);

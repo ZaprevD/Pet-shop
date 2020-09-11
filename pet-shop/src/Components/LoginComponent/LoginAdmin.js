@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "./login.css";
 import { adminLogin } from '../adminFunctions';
+import { Link } from "react-router-dom";
 import { isLoggedIn, Loader, ErrorWindow } from "../Helper";
 const LoginAdmin = props => {
 
@@ -55,7 +56,16 @@ const LoginAdmin = props => {
                     <input type="text" placeholder="Username" />
                     <input type="password" placeholder="Password" />
                     <button type="submit">Login</button>
+                    <div className="forgot-paths">
+                    <div>
+                        <Link to="loginadmin/forgot/username">Forgot Username?</Link>
+                    </div>
+                    <div>
+                        <Link to="loginadmin/forgot/password">Forgot Password?</Link>
+                    </div>
+                </div>
                 </form>
+             
             </div>
         </div>
     );

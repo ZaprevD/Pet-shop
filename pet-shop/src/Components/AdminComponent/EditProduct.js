@@ -26,7 +26,9 @@ const EditProduct = props => {
         const fd = new FormData();
         fd.append("productImage", newImage)
         let res = await uploadFile(props.id, fd);
-        console.log(res);
+        if(res !== 200) {
+            setError("Something went wrong, please try again latter."); 
+        }
     }
 
     const hideErrorMsg = () => setError("");
@@ -54,7 +56,7 @@ const EditProduct = props => {
                             <input onChange={onNewImageChangeHandler} type="file" name="productImage" id="slika" accept="image/*" placeholder="Image" />
                         </div>
                     </div>
-                    {newImage !== "" ? <button onClick={changeImageSubmit} className="set-image-btn">Set</button> : null}
+                    {newImage !== "" ? <div onClick={changeImageSubmit} className="set-image-btn">Постави</div> : null}
                 </div>
                 <div className="box-50">
                     <div className="cart-header">

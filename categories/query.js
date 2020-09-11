@@ -13,19 +13,6 @@ getAllCategoriesQuery = () => {
     });
 }
 
-getTopCategoriesQuery = () => {
-    const query = "SELECT * FROM category WHERE ParentId = 0";
-    return new Promise((resolve, reject) => {
-        conn.query(query, (error, results, fields) => {
-            if(error) {
-                reject(error);
-            }else{
-                resolve(results);
-            }
-        })
-    })
-}
-
 getCategoryByNameQuery = name => {
     const query = "SELECT Id FROM Category WHERE NAME = ?";
     return new Promise((resolve, reject) => {
@@ -91,5 +78,5 @@ addNewSubCategoryQuery = (name, parentId) => {
     })
 }
 
-module.exports ={getAllCategoriesQuery, getTopCategoriesQuery, updateCategoryQuery, deleteCategoryQuery,
+module.exports ={getAllCategoriesQuery, updateCategoryQuery, deleteCategoryQuery,
     addNewTopCategoryQuery, addNewSubCategoryQuery, getCategoryByNameQuery }

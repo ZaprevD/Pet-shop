@@ -27,6 +27,13 @@ export const isTokenExpired = () => {
     return false;
 };
 
+export const isResetLinkExpired = decodedToken => {
+    if (Date.now() >= decodedToken.exp * 1000) {
+        return true;
+    };
+    return false;
+}
+
 const hasNumbers = (t) => {
     return /\d/.test(t);
 };
@@ -124,3 +131,12 @@ export const InfoWindow = props => {
         </div>
     );
 };
+
+export const AlertWindow = props => {
+    return (
+        <div className="alert-window">
+            <p>{props.message}</p>
+            <button onClick={props.action}>OK</button>
+        </div>
+    )
+}

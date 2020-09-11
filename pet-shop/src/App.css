@@ -19,12 +19,33 @@
   position: fixed;
   left: 45%;
   top: 42%;
-  animation: loading .4s linear infinite;
+  animation: loading .5s ease-in-out infinite;
   z-index: 999;
 }
 
+
 @keyframes loading{
-  100%{transform: rotate(360deg)};
+  0% {
+    border-top: 6px solid rgb(15, 129, 145) ;
+    border-bottom: 6px solid rgb(255, 166, 0) ;
+    border-left: 6px solid transparent ;
+    border-right: 6px solid transparent ;
+    transform: rotate(90deg);
+  }
+  50% {
+    border-top: 6px solid transparent ;
+    border-bottom: 6px solid transparent ;
+    border-left: 6px solid rgb(146, 184, 255) ;
+    border-right: 6px solid rgb(9, 255, 0) ;
+    transform: rotate(180deg);
+  }
+  100%{
+    border-top: 6px solid rgb(15, 129, 145) ;
+    border-bottom: 6px solid rgb(255, 166, 0) ;
+    border-left: 6px solid transparent ;
+    border-right: 6px solid transparent ;
+    transform: rotate(360deg)
+  };
 }
 
 .error-window {
@@ -74,9 +95,35 @@
   border-radius: 5px;
 }
 
-.info-window-alert p {
+.info-window-alert p, .alert-window p {
   margin: 5px;
   padding: 5px;
+  font-size: 18px;
+}
+
+.alert-window {
+  width: 45%;
+  position: fixed;
+  padding: 10px;
+  top: 36%;
+  left: 27%;
+  background: rgb(145, 185, 1, 0.9);
+  border-radius: 5px;
+  text-align: center;
+}
+
+.alert-window button {
+  cursor: pointer;
+  width: 10%;
+  border: none;
+  padding: 3px;
+  margin: 8px;
+  background: rgb(0, 255, 0);
+  border-radius: 5px;
+}
+
+.alert-window button:hover {
+  background: rgb(208, 255, 0);
 }
 
 .App-logo {

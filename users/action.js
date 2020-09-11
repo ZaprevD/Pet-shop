@@ -1,7 +1,7 @@
 const { User } = require("../models");
 const jwt = require("jsonwebtoken");
 const query = require("./query");
-
+const nodeMailer = require("nodemailer");
 
 
 logginUser = async (req, res) => {
@@ -74,4 +74,76 @@ deleteUser = async (req, res) => {
     }
 }
 
-module.exports = { getAllUsers, logginUser, editUser, registerUser, deleteUser };
+sendResetPasswordEmail = async (req, res) => {
+    try {
+        const dbUser = await query.getUserByUsernameQuery(req.body.username);
+        if (dbUser[0] !== undefined) {
+            let transporter = nodeMailer.createTransport({
+                host: 'smtp.gmail.com',
+                port: 465,
+                secure: true,
+                auth: {
+                    user: 'dean.phone23@gmail.com', // generated ethereal user
+                    pass: 'passcrack1', // generated ethereal password
+                },
+            });
+            let mailOptions = {
+                to: dbUser[0].Email,
+                from: "no-replay@gmail.com",
+                subject: "Password-reset link",
+                text: "You are receiving this because you (or someone else) have requested the reset of the password." + '\n' +
+                    "Your password is : " + dbUser[0].Password + '\n' +
+                    'if you did not request this please ignore this email and your password will remain unchanged.'
+            }
+            transporter.sendMail(mailOptions, err => {
+                if (err) {
+                    res.status(500).send(err);
+                } else {
+                    res.status(200).send("success, an email has been sent to " + dbUser[0].Email + " with further instructions");
+                }
+            })
+        } else {
+            res.status(404).send(`The user with this username does not exists`);
+        }
+    } catch (error) {
+        res.status(500).send(error.message);
+    }
+}
+
+sendResetUsernameEmail = async (req, res) => {
+    try {
+        const dbUser = await query.getUserByEmailQuery(req.body.email);
+        if (dbUser[0] !== undefined) {
+            let transporter = nodeMailer.createTransport({
+                host: 'smtp.gmail.com',
+                port: 465,
+                secure: true,
+                auth: {
+                    user: 'dean.phone23@gmail.com', // generated ethereal user
+                    pass: 'passcrack1', // generated ethereal password
+                },
+            });
+            let mailOptions = {
+                to: dbUser[0].Email,
+                from: "no-replay@gmail.com",
+                subject: "Forgot Username?",
+                text: "You are receiving this because you (or someone else) have requested for forgotten Username. " + '\n' +
+                    "Your Username is : " + dbUser[0].Username + '\n' +
+                    'if you did not request this please ignore this email and your Username will remain unchanged.'
+            }
+            transporter.sendMail(mailOptions, err => {
+                if (err) {
+                    res.status(500).send(err);
+                } else {
+                    res.status(200).send("success, an email has been sent to " + dbUser[0].Email + " with further instructions");
+                }
+            })
+        } else {
+            res.status(404).send(`User not found!`);
+        }
+    } catch (error) {
+        res.status(500).send(error.message);
+    }
+}
+
+module.exports = { getAllUsers, logginUser, editUser, registerUser, deleteUser, sendResetPasswordEmail, sendResetUsernameEmail };
