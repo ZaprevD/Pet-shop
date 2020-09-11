@@ -1,13 +1,14 @@
 import React, { useState } from "react";
 import { Link, withRouter } from "react-router-dom";
 import { forgotUsernameMail } from "../adminFunctions";
-import { Loader, AlertWindow, ErrorWindow, emailValidation } from "../Helper";
+import { Loader, ErrorWindow, emailValidation, NotificationWindow } from "../Helper";
 const ForgotUsername = props => {
 
     const [message, setMessage] = useState("");
     const [error, setError] = useState("");
     const [loading, setLoading] = useState(false);
     const [disableButton, setDisableButton] = useState(false);
+    const [timer, setTimer] = useState(0);
 
     const onSubmitHandler = async e => {
         setLoading(true);
@@ -18,7 +19,7 @@ const ForgotUsername = props => {
         if (emailValidation(data.email).isOk) {
             let res = await forgotUsernameMail(data);
             if (res.status === 200) {
-                setDisabledBtn();
+                timerFunc();
                 setMessage(res.data);
                 setLoading(false);
             } else if (parseInt(res.status) === 404) {
@@ -34,28 +35,36 @@ const ForgotUsername = props => {
         }
     }
 
-    const setDisabledBtn = () => {
-        setDisableButton(true);
-        setTimeout(() => {setDisableButton(false)},60000)
+    const timerFunc = () => {
+        setDisableButton(true)
+        let i = 50;
+        const time = setInterval(() => {
+            i--
+            setTimer(i);
+            if (i === 0) {
+                setTimer(0);
+                clearInterval(time)
+                setDisableButton(false)
+            };
+        }, 1000);
     }
 
-    const okClickHandler = () => props.history.push("/loginadmin");
     const hideErr = () => setError("");
 
     return (
         <div className="container-100">
             {loading ? <Loader /> : null}
-            {message !== "" ? <AlertWindow message={message} action={okClickHandler} /> : null}
             {error !== "" ? <ErrorWindow message={error} hideErrorMessage={hideErr} /> : null}
             <div className="rope"></div>
             <div className="login-box">
                 <div className="info-window">
                     <h3>Forgot your username?</h3>
                 </div>
+                {message !== "" ? <NotificationWindow timer={timer} message={message} /> : null}
                 <form onSubmit={onSubmitHandler}>
                     <label htmlFor="forgot-username">Please insert your email address</label>
                     <input id="forgot-username" type="text" placeholder="Email" />
-                    <button className={disableButton? "disabled-btn" : null}  type="submit" disabled={disableButton} >Send Email</button>
+                    <button className={disableButton ? "disabled-btn" : null} type="submit" disabled={disableButton} >Send Email</button>
                     <Link className="back-btn" to="/loginadmin">Back</Link>
                 </form>
             </div>

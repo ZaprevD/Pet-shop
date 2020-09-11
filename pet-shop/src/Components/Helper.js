@@ -1,6 +1,6 @@
 import React from "react";
 import jwt_decode from "jwt-decode";
-
+import { Link } from "react-router-dom";
 export const Loader = props => {
     return (
         <div id="loader"></div>
@@ -137,6 +137,17 @@ export const AlertWindow = props => {
         <div className="alert-window">
             <p>{props.message}</p>
             <button onClick={props.action}>OK</button>
+        </div>
+    )
+}
+
+export const NotificationWindow = props => {
+    return (
+        <div className="notification-window">
+            <p>{props.message}</p>
+            <p>Not received email? Resend in {props.timer}s or
+            <Link style={{color: "purple"}} to="/loginadmin" > Login now</Link>
+            </p>
         </div>
     )
 }

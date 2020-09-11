@@ -5,6 +5,7 @@
     background: rgb(193, 193, 255, 0.8);
     border-radius: 5px;
     box-shadow: 8px 8px 15px 7px grey;
+    position: relative;
 }
 
 .login-box form label {
@@ -104,4 +105,13 @@ form  button {
 
 .back-btn:hover {
     background: rgb(255, 136, 136, 0.5);
+}
+
+.notification-window {
+    position: absolute;
+    width: 80%;
+    text-align: center;
+    left: 10%;
+    background: rgb(126, 247, 4, 0.9);
+    padding: 3px;
 }
