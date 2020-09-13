@@ -37,7 +37,13 @@ export const getAllProducts = () => {
 
 export const getProductsByCategoryId = category => {
     return axios.get(`/api/products/category/${category}`)
-        .then(res => res.data).catch(err => console.log(err.message));
+        .then(res => {
+            return { data: res.data, status: res.status }
+        }).catch(err => {
+            const msg = err.message;
+            let status = msg.substr(msg.indexOf("code") + 4);
+            return { status: status };
+        });
 }
 
 export const updateProduct = (name, desc, price, id, action) => {
@@ -45,7 +51,7 @@ export const updateProduct = (name, desc, price, id, action) => {
     return axios.put(`/api/product/${id}`, data, auth)
         .then(res => {
             return { status: res.status, data: res.data }
-        }).catch(err =>  {
+        }).catch(err => {
             const msg = err.message;
             let status = msg.substr(msg.indexOf("code") + 4);
             return { status: status };
@@ -54,14 +60,25 @@ export const updateProduct = (name, desc, price, id, action) => {
 
 export const deleteProduct = (id) => {
     return axios.delete(`/api/product/${id}`, auth)
-        .then(res => console.log(res.data))
-        .catch(err => console.log(err.message));
+        .then(res => {
+            return { status: res.status, data: res.data }
+        }).catch(err => {
+            const msg = err.message;
+            let status = msg.substr(msg.indexOf("code") + 4);
+            return { status: status };
+        });
 }
 
 export const addNewProduct = data => {
     return axios.post(`/api/product`, data, auth)
-        .then(res => console.log(res.data))
-        .catch(err => console.log(err.message));
+        .then(res => {
+            return { status: res.status, data: res.data }
+        })
+        .catch(err => {
+            const msg = err.message;
+            let status = msg.substr(msg.indexOf("code") + 4);
+            return { status: status };
+        });
 }
 
 export const getAllUsers = () => {
@@ -77,7 +94,13 @@ export const getAllUsers = () => {
 
 export const getProductsOnAction = () => {
     return axios.get("/api/products/on-action")
-        .then(res => res.data).catch(err => console.log(err));
+        .then(res => {
+            return { data: res.data, status: res.status }
+        }).catch(err => {
+            const msg = err.message;
+            let status = msg.substr(msg.indexOf("code") + 4);
+            return { status: status };
+        });
 }
 
 export const editUser = (data, id) => {
@@ -104,7 +127,13 @@ export const registerUser = (data) => {
 
 export const deleteUser = id => {
     return axios.delete(`/api/user/${id}`, auth)
-        .then(res => res.data).catch(err => err.message);
+        .then(res => {
+            return { status: res.status, data: res.data }
+        }).catch(err => {
+            const msg = err.message;
+            let status = msg.substr(msg.indexOf("code") + 5);
+            return { status: status };
+        });
 }
 
 const config = {
@@ -151,7 +180,13 @@ export const editCategory = (data, id) => {
 
 export const deleteCategory = id => {
     return axios.delete(`/api/delete-category/${id}`, auth)
-        .then(res => res.data).catch(err => console.log(err.message));
+        .then(res => {
+            return { status: res.status, data: res.data }
+        }).catch(err => {
+            const msg = err.message;
+            let status = msg.substr(msg.indexOf("code") + 5);
+            return { status: status };
+        });
 }
 
 export const sendResetPasswordMail = username => {

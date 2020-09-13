@@ -5,6 +5,7 @@ import ListElement from "./ListElement";
 import NewCategoryForm from "./NewCategoryForm";
 import { ErrorWindow, isTokenExpired, Loader } from "../../Helper";
 import "./categories.css";
+
 const Categories = props => {
 
     const [categories, setCategories] = useState([]);
@@ -51,9 +52,13 @@ const Categories = props => {
 
     const deleteCategoryHandler = async id => {
         setIsLoading(true);
-        await deleteCategory(id);
-        fetchCategories();
-        setIsLoading(false);
+        let res = await deleteCategory(id);
+        if (res.status === 200) {
+            fetchCategories();
+        } else {
+            setError('Something went wrong, please try again latter');
+            setIsLoading(false);
+        }
     }
 
     const newCategorySubmitHandler = async name => {
@@ -78,7 +83,7 @@ const Categories = props => {
         <React.Fragment>
             <Sidebar />
             <div className="categories-container">
-                {isLoading ? <Loader /> : null }
+                {isLoading ? <Loader /> : null}
                 {error !== "" ? <ErrorWindow message={error} hideErrorMessage={hideErr} /> : null}
                 <div className="new-category-box">
                     <div className="button-holder">

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { withRouter } from "react-router-dom";
 import { getAllProducts, updateProduct, deleteProduct, addNewProduct, logOut } from "../adminFunctions";
 import ProductCart from "./ProductCart";
-import { isTokenExpired, Loader } from "../Helper";
+import { isTokenExpired, Loader, ErrorWindow } from "../Helper";
 import Sidebar from "../SidebarComponent/Sidebar";
 import "./admin.css";
 const Admin = props => {
@@ -45,26 +45,38 @@ const Admin = props => {
     const updateProductHandler = async (name, desc, price, id, actionProduct) => {
         setIsLoading(true);
         let data = await updateProduct(name, desc, price, id, actionProduct);
-        if(data.status !== 200) {
+        if (data.status !== 200) {
             setMessage("Something went wrong, please try again latter");
             setIsLoading(false);
-        }else{
-           await fetchData();
-           setIsLoading(false);
+        } else {
+            await fetchData();
+            setIsLoading(false);
         }
     };
 
     const deleteProductHandler = async id => {
         setIsLoading(true);
-        await deleteProduct(id);
-        fetchData();
+        let res = await deleteProduct(id);
+        if (res.status === 200) {
+            fetchData();
+        } else {
+            setMessage("Something went wrong please try again latter");
+            setIsLoading(false);
+        }
     };
 
     const addProductHandler = async data => {
         setIsLoading(true);
-        await addNewProduct(data);
-        fetchData();
+        let res = await addNewProduct(data);
+        if (res.status === 200) {
+            fetchData();
+        } else {
+            setMessage("Something went wrong please try again latter");
+            setIsLoading(false);
+        }
     };
+
+    const hideErr = () => setMessage("");
 
     return (
         <React.Fragment>
@@ -72,7 +84,8 @@ const Admin = props => {
             <div className="products-box">
                 {isLoading ? <Loader /> : null}
                 {message === "" ? products.map(el => <ProductCart key={el.Id} id={el.Id} delete={deleteProductHandler}
-                    imgPath={el.Image_path} name={el.Name} update={updateProductHandler} onAction={el.On_Action} desc={el.Description} price={el.Price} />) : <h3>{message}</h3>
+                    imgPath={el.Image_path} name={el.Name} update={updateProductHandler} onAction={el.On_Action} desc={el.Description} price={el.Price} />)
+                    : <ErrorWindow message={message} hideErrorMessage={hideErr} />
                 }
             </div>
         </React.Fragment>

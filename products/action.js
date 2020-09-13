@@ -6,7 +6,7 @@ getAllProducts = async (req, res) => {
         let data = await query.getAllProductsQuery();
         res.status(200).send(data);
     } catch (error) {
-        console.log(error);
+        res.status(500).send(error);
     }
 }
 
@@ -24,7 +24,7 @@ updateProduct = async (req, res) => {
         await query.updateProductQuery(req.body.name, req.body.desc, req.body.price, req.params.id, req.body.on_action);
         res.status(200).send("Product Updated");
     } catch (error) {
-        console.log(error);
+        res.status(500).send(error);
     }
 }
 
@@ -33,7 +33,7 @@ deleteProduct = async (req, res) => {
         await query.deleteProductQuery(req.params.id);
         res.status(200).send("Product Deleted!");
     } catch (error) {
-        console.log(error);
+        res.status(500).send(error);
     }
 }
 
@@ -50,14 +50,13 @@ addNewProduct = async (req, res) => {
             file.name.includes(" ") ? file.name = file.name.replace(/\s/g, '-') : null;
             file.mv(`pet-shop/public/products-images/${file.name}`, err => {
                 if (err) {
-                    console.log(err);
                     res.status(500).send(err);
                 };
             });
         };
         res.status(200).send("Производот е додаден");
     } catch (error) {
-        console.log(error)
+        res.status(500).send(error);
     };
 };
 
@@ -69,7 +68,6 @@ changeProductPicture = async (req, res) => {
             file.name.includes(" ") ? file.name = file.name.replace(/\s/g, '-') : null;
             await file.mv(`pet-shop/public/products-images/${file.name}`, err => {
                 if (err) {
-                    console.log(err);
                     return res.status(500).send(err);
                 };
             });

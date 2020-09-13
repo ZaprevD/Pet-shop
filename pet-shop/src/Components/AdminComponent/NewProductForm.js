@@ -32,7 +32,6 @@ const NewProductForm = props => {
     const onPriceChange = e => setPrice(e.target.value);
     const onActionChange = e => setOnAction(e.target.checked);
     const onCategoryChange = e => {
-        console.log(e.target.value);
         setSelectedCategory(e.target.value);
     }
     const onImageChange = e => {

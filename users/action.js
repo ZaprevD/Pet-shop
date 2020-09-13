@@ -83,8 +83,8 @@ sendResetPasswordEmail = async (req, res) => {
                 port: 465,
                 secure: true,
                 auth: {
-                    user: 'dean.phone23@gmail.com', // generated ethereal user
-                    pass: 'passcrack1', // generated ethereal password
+                    user: process.env.EMAIL, // generated ethereal user
+                    pass: process.env.MAILPASSWORD, // generated ethereal password
                 },
             });
             let mailOptions = {
@@ -119,8 +119,8 @@ sendResetUsernameEmail = async (req, res) => {
                 port: 465,
                 secure: true,
                 auth: {
-                    user: 'dean.phone23@gmail.com', // generated ethereal user
-                    pass: 'passcrack1', // generated ethereal password
+                    user: process.env.EMAIL, // generated ethereal user
+                    pass: process.env.MAILPASSWORD, // generated ethereal password
                 },
             });
             let mailOptions = {

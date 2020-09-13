@@ -50,13 +50,18 @@ const CategoriesMenu = props => {
         setIsLoading(true);
         if (id !== null) {
             const products = await getProductsByCategoryId(id);
-            if (products.length === 0) {
+            if (products.data.length === 0) {
                 setErrorMsg("Not products found in this category!");
                 setIsLoading(false);
             } else {
-                setErrorMsg("");
-                setProducts(products);
-                setIsLoading(false);
+                if (products.status === 200) {
+                    setErrorMsg("");
+                    setProducts(products.data);
+                    setIsLoading(false);
+                }else{
+                    setErrorMsg("Something went wrong, please try again latter");
+                    setIsLoading(false);
+                }
             }
         } else {
             setFirstView();
@@ -67,7 +72,7 @@ const CategoriesMenu = props => {
         <div className="products-view">
             {isLoading ? <Loader /> : null}
             <div className="paths-menu">
-            <FaBars className='hamburger-menu-icon' />
+                <FaBars className='hamburger-menu-icon' />
                 <div className="menu-window">
                     <ul className="client-categories-menu">
                         <li>

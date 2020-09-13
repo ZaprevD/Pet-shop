@@ -2,12 +2,14 @@ import React, { useState, useEffect } from "react";
 import { getProductsOnAction } from "../adminFunctions";
 import ProductWindow from "./ProductWindow";
 import { FaAngleLeft, FaAngleRight } from 'react-icons/fa';
-import { Loader } from "../Helper";
+import { Loader, ErrorWindow } from "../Helper";
+
 const Slider = props => {
 
     const [productsOnAction, setProductsOnAction] = useState([]);
     const [percentageX, setPercentageX] = useState(0);
     const [loading, setLoading] = useState(false);
+    const [error, setError] = useState("");
 
     useEffect(() => {
         fetchProducts();
@@ -15,12 +17,18 @@ const Slider = props => {
 
     const fetchProducts = async () => {
         setLoading(true);
-        const data = await getProductsOnAction();
-        data.forEach((element, i) => {
-            element.index = i;
-        });
-        setProductsOnAction(data);
-        setLoading(false);
+        const res = await getProductsOnAction();
+        if (res.status === 200) {
+            res.data.forEach((element, i) => {
+                element.index = i;
+            });
+            setProductsOnAction(res.data);
+            setLoading(false);
+        } else {
+            setError(`Something went wrong, please try again latter`);
+            setLoading(false);
+        }
+
     }
 
     const handleNext = e => {
@@ -31,8 +39,11 @@ const Slider = props => {
         percentageX === 0 ? setPercentageX(-100 * (productsOnAction.length - 1)) : setPercentageX(percentageX + 100);
     }
 
+    const hideErr = () => setError("");
+
     return (
         <React.Fragment>
+            {error !== "" ? <ErrorWindow message={error} hideErrorMessage={hideErr} /> : null}
             {loading ? <Loader /> :
                 <div className="cards-slider">
                     {productsOnAction.length !== 0 ?

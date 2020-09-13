@@ -5,7 +5,7 @@ getAllCategories = async (req, res) => {
         let data = await query.getAllCategoriesQuery();
         res.status(200).send(data);
     } catch (error) {
-        console.log(error);
+        res.status(500).send(error);
     };
 };
 
@@ -19,7 +19,7 @@ updateCategory = async (req, res) => {
             res.status(409).send(`Category with this name alredy exists`);
         }
     } catch (error) {
-        console.log(error);
+        res.status(500).send(error);
     };
 };
 
@@ -28,7 +28,7 @@ deleteCategory = async (req, res) => {
         await query.deleteCategoryQuery(req.params.id);
         res.status(200).send("Category Deleted!");
     } catch (error) {
-        console.log(error);
+        res.status(500).send(error);
     };
 };
 
@@ -42,7 +42,7 @@ addNewTopCategory = async (req, res) => {
             res.status(409).send(`Категоријата постои!`);
         }
     } catch (error) {
-        console.log(error)
+        res.status(500).send(error);
     };
 };
 

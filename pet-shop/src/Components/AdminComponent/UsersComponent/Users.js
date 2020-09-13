@@ -69,8 +69,13 @@ const Users = props => {
 
     const deleteUserHandler = async (id) => {
         setIsLoading(true);
-        await deleteUser(id);
-        fetchUsers();
+      let res =  await deleteUser(id);
+      if(res.status === 200) {
+          fetchUsers();
+      }else {
+          setMessage(`Something went wrong, please try again latter`);
+          setIsLoading(false);
+      }
     }
 
     const hideError = () => setMessage("");
