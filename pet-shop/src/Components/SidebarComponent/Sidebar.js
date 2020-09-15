@@ -15,12 +15,12 @@ const Sidebar = props => {
     const newProductSubmitHandler = async data => {
         await props.newProduct(data);
         setShowNewProductForm(false);
-    }
+    };
 
     const newUserSubmitHandler = async data => {
         await props.newUserSubmit(data);
         setShowNewUserForm(false);
-    }
+    };
 
     return (
         <div className="sidebar-window">
@@ -34,6 +34,6 @@ const Sidebar = props => {
             {showNewProductForm ? <NewProductForm addNew={newProductSubmitHandler} /> : null}
             {showNewUserForm ? <NewUserForm newUserSubmit={newUserSubmitHandler} /> : null}
         </div>
-    )
-}
+    );
+};
 export default withRouter(Sidebar);

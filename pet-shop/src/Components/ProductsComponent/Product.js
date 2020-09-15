@@ -6,7 +6,7 @@ const Product = props => {
         backgroundImage: `url(${require(`../../../public/products-images/` + props.picture)})`,
         backgroundPosition: "center",
         backgroundSize: "cover"
-    }
+    };
 
     return (
         <div className="product-holder-box">
@@ -15,9 +15,7 @@ const Product = props => {
             </div>
             <div className="product-info-holder">
                 <div className="box-50">
-                    <div style={style} className="product-image-holder">
-
-                    </div>
+                    <div style={style} className="product-image-holder"></div>
                 </div>
                 <div className="box-45-hover">
                     <div className="text-holder">
@@ -29,8 +27,6 @@ const Product = props => {
                 </div>
             </div>
         </div>
-    )
-
-}
-
+    );
+};
 export default Product;

@@ -11,6 +11,6 @@ let connection = mysql.createConnection({
 connection.connect(err => {
     if(err) throw err;
     console.log(`DB Connected`);
-})
+});
 
 module.exports = connection;

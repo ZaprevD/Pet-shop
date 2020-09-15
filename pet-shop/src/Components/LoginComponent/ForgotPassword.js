@@ -15,7 +15,7 @@ const ForgotPassword = props => {
         setLoading(true);
         const data = {
             username: e.target[0].value
-        }
+        };
         const res = await sendResetPasswordMail(data);
         if (res.status === 200) {
             timerFunc();
@@ -27,22 +27,22 @@ const ForgotPassword = props => {
         } else {
             setError("Настана серверска грешка ве молам обидетесе подоцна!");
             setLoading(false);
-        }
-    }
+        };
+    };
 
     const timerFunc = () => {
-        setDisableButton(true)
+        setDisableButton(true);
         let i = 50;
         const time = setInterval(() => {
             i--
             setTimer(i);
             if (i === 0) {
                 setTimer(0);
-                clearInterval(time)
-                setDisableButton(false)
+                clearInterval(time);
+                setDisableButton(false);
             };
         }, 1000);
-    }
+    };
 
     const hideErr = () => setError("");
 
@@ -64,6 +64,6 @@ const ForgotPassword = props => {
                 </form>
             </div>
         </div>
-    )
-}
+    );
+};
 export default ForgotPassword;

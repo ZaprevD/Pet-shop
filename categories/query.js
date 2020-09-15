@@ -8,10 +8,10 @@ getAllCategoriesQuery = () => {
                 reject(error);
             } else {
                 resolve(results);
-            }
-        })
+            };
+        });
     });
-}
+};
 
 getCategoryByNameQuery = name => {
     const query = "SELECT Id FROM Category WHERE NAME = ?";
@@ -21,10 +21,10 @@ getCategoryByNameQuery = name => {
                 reject(error);
             }else {
                 resolve(results);
-            }
-        })
-    })
-}
+            };
+        });
+    });
+};
 
 updateCategoryQuery = (name, id) => {
     const query = "UPDATE category SET Name = ? WHERE Id = ?"
@@ -34,10 +34,10 @@ updateCategoryQuery = (name, id) => {
                 reject(error);
             } else {
                 resolve();
-            }
-        })
-    })
-}
+            };
+        });
+    });
+};
 
 deleteCategoryQuery = (id) => {
     const query = "DELETE FROM category WHERE Id = ?";
@@ -47,10 +47,10 @@ deleteCategoryQuery = (id) => {
                 reject(error);
             } else {
                 resolve();
-            }
-        })
-    })
-}
+            };
+        });
+    });
+};
 
 addNewTopCategoryQuery = (name) => {
     const query = "INSERT INTO category (NAME) VALUES (?)";
@@ -60,10 +60,10 @@ addNewTopCategoryQuery = (name) => {
                 reject(error);
             } else {
                 resolve();
-            }
-        })
-    })
-}
+            };
+        });
+    });
+};
 
 addNewSubCategoryQuery = (name, parentId) => {
     const query = "INSERT INTO category (Name, ParentId) VALUES (?, ?)";
@@ -73,10 +73,10 @@ addNewSubCategoryQuery = (name, parentId) => {
                 reject(error);
             } else {
                 resolve();
-            }
-        })
-    })
-}
+            };
+        });
+    });
+};
 
 module.exports ={getAllCategoriesQuery, updateCategoryQuery, deleteCategoryQuery,
     addNewTopCategoryQuery, addNewSubCategoryQuery, getCategoryByNameQuery }

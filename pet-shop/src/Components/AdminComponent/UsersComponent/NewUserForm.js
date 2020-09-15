@@ -10,7 +10,7 @@ const NewUserForm = props => {
             username: e.target[0].value,
             password: e.target[1].value,
             email: e.target[2].value
-        }
+        };
         if (!passwordValidation(data.password).isOk) {
             setError(passwordValidation(data.password).msg);
         } else if (!usernameValidation(data.username).isOk) {
@@ -20,8 +20,8 @@ const NewUserForm = props => {
         } else {
             setError("");
             await props.newUserSubmit(data);
-        }
-    }
+        };
+    };
 
     return (
         <div className="new-product-form">
@@ -41,8 +41,7 @@ const NewUserForm = props => {
                 </div>
             </form>
         </div>
-    )
-
-}
+    );
+};
 
 export default NewUserForm;

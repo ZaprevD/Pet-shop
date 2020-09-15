@@ -6,8 +6,8 @@ const Actions = props => {
         let sure = window.confirm("Дали сакате да ја избришете оваа категорија?");
         if (sure) {
             await props.delete(props.id)
-        }
-    }
+        };
+    };
 
     return (
         <div className="actions-holder">
@@ -18,7 +18,7 @@ const Actions = props => {
                 <button onClick={deleteCategory} className="delete-category-btn" >Delete</button>
             </div>
         </div>
-    )
-}
+    );
+};
 
 export default Actions;

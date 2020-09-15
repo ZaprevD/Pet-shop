@@ -17,7 +17,7 @@ updateCategory = async (req, res) => {
             res.status(200).send("Податоците се изменети!");
         } else {
             res.status(409).send(`Категорија со ова име веќе постои!`);
-        }
+        };
     } catch (error) {
         res.status(500).send(error);
     };
@@ -40,7 +40,7 @@ addNewTopCategory = async (req, res) => {
             res.status(200).send(`Категоријата е додадена`);
         } else {
             res.status(409).send(`Категоријата постои!`);
-        }
+        };
     } catch (error) {
         res.status(500).send(error);
     };
@@ -55,8 +55,7 @@ addNewSubCategory = async (req, res) => {
     };
 };
 
-
 module.exports = {
     addNewSubCategory, addNewTopCategory, deleteCategory, getAllCategories,
     updateCategory
-}
+};

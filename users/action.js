@@ -3,7 +3,6 @@ const jwt = require("jsonwebtoken");
 const query = require("./query");
 const nodeMailer = require("nodemailer");
 
-
 logginUser = async (req, res) => {
     let data = await query.getUserByUsernameQuery(req.body.username);
     let dbUser = data[0];
