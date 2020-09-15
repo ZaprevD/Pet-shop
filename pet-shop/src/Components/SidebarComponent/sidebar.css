@@ -17,6 +17,20 @@
    cursor: pointer;
 }
 
-.sidebar-window  ul li:hover {
+.sidebar-window  ul li:hover , .sidebar-window  ul li a:hover {
     color: red;
 }
+
+.arrow {
+    cursor: pointer;
+    user-select: none;
+  }
+  
+  .arrow::before {
+    content: "\25B6";
+    color: gray;
+    display: inline-block;
+    margin-right: 5px;
+    float: left;
+    margin-left: -15px;
+  }

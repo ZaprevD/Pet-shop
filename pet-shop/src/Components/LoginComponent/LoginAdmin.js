@@ -1,50 +1,74 @@
 import React, { useState, useEffect } from "react";
 import "./login.css";
 import { adminLogin } from '../adminFunctions';
-import { isLoggedIn } from "../Helper";
+import { Link } from "react-router-dom";
+import { isLoggedIn, Loader, ErrorWindow } from "../Helper";
 const LoginAdmin = props => {
 
     const [error, setError] = useState("");
+    const [isLoading, setIsLoading] = useState(false);
 
     useEffect(() => {
-        if(isLoggedIn()){
+        if (isLoggedIn()) {
             window.location.href = "/admin";
-        }
-    })
+        };
+    });
+
+    const hideError = () => setError("");
 
     const onSubmitHandler = async e => {
+        setIsLoading(true);
         e.preventDefault();
         const data = {
             username: e.target[0].value,
             password: e.target[1].value
-        }
+        };
         let status = await adminLogin(data);
         switch (parseInt(status)) {
-            case 200: window.location.href = "/admin";
+            case 200:
+                setIsLoading(false);
+                window.location.href = "/admin";
                 break;
-            case 404: setError("User not found");
+            case 404:
+                setIsLoading(false);
+                setError("Корисникот не е пронајден.");
                 break;
-            case 400: setError("Invalid Password");
+            case 400:
+                setIsLoading(false);
+                setError("Внесовте погрешна лозинка, обидете се повторно.");
                 break;
-            default: setError(`Something went wrong. Please try again latter`);
-            break;
-        }
-
-    }
+            default:
+                setIsLoading(false);
+                setError(`Настана серверска грешка ве молам обидетесе подоцна!`);
+        };
+    };
 
     return (
-        <div className="login-box">
-            <div className="info-window">
-                {error !== "" ? <div className="error-holder"><h3>{error}</h3></div> : <h3>Admin Login</h3>}
-            </div>
-            <form onSubmit={onSubmitHandler}>
-                <input type="text" placeholder="Username" />
-                <input type="password" placeholder="Password" />
-                <button type="submit">Login</button>
-            </form>
-        </div>
-    )
+        <div className="container-100">
+            <div className="rope"></div>
+            {isLoading ? <Loader /> : null}
+            <div className="login-box">
+                <div className="info-window">
+                    <h3>Admin Login</h3>
+                    {error !== "" ? <ErrorWindow message={error} hideErrorMessage={hideError} /> : null}
+                </div>
+                <form onSubmit={onSubmitHandler}>
+                    <input type="text" placeholder="Username" />
+                    <input type="password" placeholder="Password" />
+                    <button type="submit">Login</button>
+                    <div className="forgot-paths">
+                        <div>
+                            <Link to="loginadmin/forgot/username">Forgot Username?</Link>
+                        </div>
+                        <div>
+                            <Link to="loginadmin/forgot/password">Forgot Password?</Link>
+                        </div>
+                    </div>
+                </form>
 
-}
+            </div>
+        </div>
+    );
+};
 
 export default LoginAdmin;

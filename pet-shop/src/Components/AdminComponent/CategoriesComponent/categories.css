@@ -1,8 +1,7 @@
 .categories-container {
     width: 79%;
-    margin: 10px;
+    margin: 0 10px;
     padding: 10px;
-    border: 1px solid black;
     min-height: 90vh;
     overflow: scroll;
 }
@@ -13,7 +12,91 @@
     list-style: none;
 }
 
-.arrow {
+.categories-main-menu li {
+  margin: 10px;
+  padding: 3px 10px;
+  font-size: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: rgb(170, 170, 253, 0.8);
+}
+
+.categories-main-menu li input {
+  padding: 3px;
+  font-size: 0.8em;
+}
+
+.actions-holder{
+  width: 30%;
+  padding: 5px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.action-box {
+  width: 50%;
+  padding: 3px 7px;
+  text-align: center;
+}
+
+.action-box button {
+  width: 50%;
+  cursor: pointer;
+}
+
+.edit-category-btn {
+  background:rgb(255, 255, 86);
+  border:none;
+  border-radius: 5px;
+  padding: 5px 0;
+}
+
+.delete-category-btn{
+  background:rgb(248, 68, 68);
+  border:none;
+  border-radius: 5px;
+  padding: 5px 0;
+  color:white;
+}
+
+.new-category-box{
+  padding:10px;
+  margin-top: 15px;
+}
+
+.new-category-box .button-holder button {
+  padding:10px 5px;
+  margin: 10px 0 0 15px;
+  background: rgb(176, 176, 255);
+  border:none;
+  border-radius: 2px;
+  color : yellow;
+  cursor: pointer;
+  width: 10%;
+}
+
+.new-category-form-holder {
+  width: 30%;
+  padding: 5px 10px;
+  margin:5px 10px;
+  background: whitesmoke;
+}
+
+.new-category-form-holder .input-holder input {
+    padding: 3px;
+    font-size: 15px;
+}
+
+.new-category-form-holder .input-holder button {
+    background: rgb(15, 247, 189);
+    border:none;
+    border-radius: 5px;
+    padding: 7px 5px;
+    cursor: pointer;
+}
+
+/* .arrow {
     cursor: pointer;
     user-select: none;
   }
@@ -35,4 +118,4 @@
 
   .red{
       color: red;
-  }
+  } */

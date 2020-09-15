@@ -9,7 +9,7 @@ const ProductWindow = props => {
     }
 
     return (
-        <div className="product-image-holder">
+        <div className="product-image-holder-slide">
             <div style={style} className="image-example"></div>
         </div>
     )

@@ -1,6 +1,8 @@
-import React from "react";
-
+import React, { useState } from "react";
+import { passwordValidation, usernameValidation, emailValidation, ErrorWindow } from "../../Helper"
 const NewUserForm = props => {
+
+    const [error, setError] = useState("");
 
     const submitHandler = async e => {
         e.preventDefault();
@@ -9,11 +11,21 @@ const NewUserForm = props => {
             password: e.target[1].value,
             email: e.target[2].value
         }
-        await props.newUserSubmit(data);
+        if (!passwordValidation(data.password).isOk) {
+            setError(passwordValidation(data.password).msg);
+        } else if (!usernameValidation(data.username).isOk) {
+            setError(usernameValidation(data.username).msg);
+        } else if (!emailValidation(data.email).isOk) {
+            setError(emailValidation(data.email).msg);
+        } else {
+            setError("");
+            await props.newUserSubmit(data);
+        }
     }
 
     return (
         <div className="new-product-form">
+            {error !== "" ? <ErrorWindow message={error} hideErrorMessage={() => setError("")} /> : null}
             <form onSubmit={submitHandler}>
                 <div className="input-holder">
                     <input type="text" placeholder="Корисничко Име" />

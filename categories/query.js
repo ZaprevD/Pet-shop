@@ -13,13 +13,13 @@ getAllCategoriesQuery = () => {
     });
 }
 
-getTopCategoriesQuery = () => {
-    const query = "SELECT * FROM category WHERE ParentId = 0";
+getCategoryByNameQuery = name => {
+    const query = "SELECT Id FROM Category WHERE NAME = ?";
     return new Promise((resolve, reject) => {
-        conn.query(query, (error, results, fields) => {
+        conn.query(query, [name], (error, results, fields) => {
             if(error) {
                 reject(error);
-            }else{
+            }else {
                 resolve(results);
             }
         })
@@ -53,7 +53,7 @@ deleteCategoryQuery = (id) => {
 }
 
 addNewTopCategoryQuery = (name) => {
-    const query = "INSERT INTO category (Name) VALUES (?)";
+    const query = "INSERT INTO category (NAME) VALUES (?)";
     return new Promise((resolve, reject) => {
         conn.query(query, [name], (error, results, fields) => {
             if (error) {
@@ -78,5 +78,5 @@ addNewSubCategoryQuery = (name, parentId) => {
     })
 }
 
-module.exports ={getAllCategoriesQuery, getTopCategoriesQuery, updateCategoryQuery, deleteCategoryQuery,
-    addNewTopCategoryQuery, addNewSubCategoryQuery }
+module.exports ={getAllCategoriesQuery, updateCategoryQuery, deleteCategoryQuery,
+    addNewTopCategoryQuery, addNewSubCategoryQuery, getCategoryByNameQuery }

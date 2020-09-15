@@ -11,7 +11,7 @@ const ProductCart = props => {
         setShowEditForm(false)
     }
     const deleteHandler = async () => {
-        let deleteItem = window.confirm("Are you sure you want to delete this product?");
+        let deleteItem = window.confirm("Дали сте сигурен дека сакате да го избришете овој производ?");
         if (deleteItem) {
             await props.delete(props.id);
         }
@@ -22,14 +22,13 @@ const ProductCart = props => {
         backgroundSize: "cover"
     }
 
-
     return (
         !showEditForm ? <div className="product-cart">
             <div className="box-50">
                 <div style={style} className="image-box"></div>
             </div>
             <div className="delete-product" onClick={deleteHandler}>
-                <FaTrashAlt />
+                <FaTrashAlt className="delete-icon" />
             </div>
             <div className="box-50">
                 <div className="cart-header">
@@ -47,5 +46,4 @@ const ProductCart = props => {
             update={updateHandler} onAction={props.onAction} price={props.price} desc={props.desc} />
     )
 }
-
 export default ProductCart;

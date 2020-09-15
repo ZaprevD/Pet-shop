@@ -1,41 +1,50 @@
 const query = require("./query");
-
-
+    
 getAllCategories = async (req, res) => {
     try {
         let data = await query.getAllCategoriesQuery();
         res.status(200).send(data);
     } catch (error) {
-        console.log(error);
-    }
-}
+        res.status(500).send(error);
+    };
+};
 
 updateCategory = async (req, res) => {
     try {
-        await query.updateCategoryQuery(req.body.name);
-        res.status(200).send("Product Updated");
+        const dbCategory = await query.getCategoryByNameQuery(req.body.name);
+        if (dbCategory[0] === undefined || dbCategory[0].Id === parseInt(req.params.id)) {
+            await query.updateCategoryQuery(req.body.name, req.params.id);
+            res.status(200).send("Податоците се изменети!");
+        } else {
+            res.status(409).send(`Категорија со ова име веќе постои!`);
+        }
     } catch (error) {
-        console.log(error);
-    }
-}
+        res.status(500).send(error);
+    };
+};
 
 deleteCategory = async (req, res) => {
     try {
         await query.deleteCategoryQuery(req.params.id);
-        res.status(200).send("Product Deleted!");
+        res.status(200).send("Категоријата е избришана!");
     } catch (error) {
-        console.log(error);
-    }
-}
+        res.status(500).send(error);
+    };
+};
 
 addNewTopCategory = async (req, res) => {
     try {
-        await query.addNewTopCategoryQuery(req.body.name);
-        res.status(200).send(`Категоријата е додадена`);
+        const dbCategory = await query.getCategoryByNameQuery(req.body.name);
+        if (dbCategory[0] === undefined) {
+            await query.addNewTopCategoryQuery(req.body.name);
+            res.status(200).send(`Категоријата е додадена`);
+        } else {
+            res.status(409).send(`Категоријата постои!`);
+        }
     } catch (error) {
-        console.log(error)
-    }
-}
+        res.status(500).send(error);
+    };
+};
 
 addNewSubCategory = async (req, res) => {
     try {
@@ -43,18 +52,11 @@ addNewSubCategory = async (req, res) => {
         res.status(200).send(`Категоријата е додадена`);
     } catch (error) {
         res.status(500).send(error.message);
-    }
+    };
+};
+
+
+module.exports = {
+    addNewSubCategory, addNewTopCategory, deleteCategory, getAllCategories,
+    updateCategory
 }
-
-getTopCategories = async (req, res) => {
-    try {
-        let topCategories = await query.getTopCategoriesQuery();
-        res.status(200).send(topCategories);
-    } catch (error) {
-        res.status(500).send(error.message);
-    }
-}
-
-
-module.exports = { getTopCategories, addNewSubCategory, addNewTopCategory, deleteCategory, getAllCategories,
-     updateCategory }

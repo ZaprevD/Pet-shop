@@ -2,10 +2,39 @@
     width: 50%;
     margin: 10px auto;
     height: 300px;
-    background: darkblue;
+    background: rgb(193, 193, 255, 0.8);
+    border-radius: 5px;
+    box-shadow: 8px 8px 15px 7px grey;
+    position: relative;
 }
 
-form {
+.login-box form label {
+    margin: 15px 0;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.reset-pass-box{
+    width: 50%;
+    margin: 10px auto;
+    background: rgb(193, 193, 255, 0.8);
+    border-radius: 5px;
+    box-shadow: 8px 8px 15px 7px grey;
+}
+
+.container-100 {
+    width: 100%;
+    height: 100%;
+}
+
+.rope {
+    width: 1px;
+    margin: 1px auto;
+    border-left: 3px dashed rgb(122, 66, 66);
+    height: 100px;
+}
+
+.login-box form , .reset-pass-box form {
     width: 70%;
     height: 100%;
     padding: 5px;
@@ -18,15 +47,34 @@ form {
 
 form input {
     margin: 10px;
-    width: 50%;
-    padding: 3px;
+    width: 65%;
+    padding:7px 3px;
+    font-size: 15px;
+    border: none;
+    border-radius: 3px;
 }
 
 form  button {
     margin: 10px;
-    padding: 3px;
-    width: 50%;
+    padding: 8px 3px;
+    width: 65%;
+    color:white;
+    background: blue;
+    border:none;
+    border-radius: 5px;
+    cursor: pointer;
 }
+
+.login-box form button:hover {
+    color: black;
+    font-weight: bold;
+    background: rgb(160, 160, 255);
+}
+
+.disabled-btn {
+    background: silver;
+}
+
 .error-holder{
     width: 100%;
     padding: 5px;
@@ -37,4 +85,33 @@ form  button {
 .info-window{
     text-align: center;
     padding: 10px;
+}
+
+.forgot-paths {
+    width: 65%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.back-btn {
+    width: 65%;
+    text-align: center;
+    margin: 3px 0;
+    padding: 3px;
+    border: 1px solid rgb(255, 71, 71);
+    border-radius: 5px;
+    color: blue;
+}
+
+.back-btn:hover {
+    background: rgb(255, 136, 136, 0.5);
+}
+
+.notification-window {
+    position: absolute;
+    width: 80%;
+    text-align: center;
+    left: 10%;
+    background: rgb(126, 247, 4, 0.9);
+    padding: 3px;
 }

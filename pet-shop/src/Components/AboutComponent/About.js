@@ -3,7 +3,7 @@ import React from "react";
 const About = props => {
 
     return(
-        <h1>About Us</h1>
+        <h1>За Нас</h1>
     )
 
 }

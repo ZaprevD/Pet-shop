@@ -36,7 +36,6 @@
     width: 100%;
 }
 
-
 .cart-footer{
     position: absolute;
     bottom: 0;
@@ -81,20 +80,30 @@
 }
 
 .delete-product { 
-    width: 10%;
-    background: rgb(241, 3, 3);
+    width: 25%;
+    height: 30%;
+    background: rgb(241, 3, 3, 0.5);
     position: absolute;
-    left: 45%;
+    left: 37%;
     padding: 10px;
-    top: 45%;
+    top: 35%;
     display:  none;
-    border-radius: 30%;
+    border-radius: 50%;
     cursor: pointer;
     z-index: 9999;
+    justify-content:center;
+    align-items: center;
+    transition: transform .2s linear;
+}
+
+.delete-icon{
+    width: 75%;
+    height: 75%;
+    color: rgb(248, 246, 113, 0.5);
 }
 
 .product-cart:hover .delete-product{
-    display: block;
+    display: flex;
 }
 
 .delete-product:hover {
@@ -120,9 +129,15 @@
     padding-top: 10px 0;
 }
 
-
 .input-holder {
     width: 90%;
+}
+
+.input-holder-flex {
+    width: 90%;
+    display: flex;
+    justify-content: space-between;
+    margin:10px 0;
 }
 
 .input-holder input, .input-holder textarea {
@@ -130,8 +145,13 @@
     margin: 10px 0;
 }
 
+.input-holder input[name="productImage"] {
+    margin: 3px 0
+}
+
 .input-holder input[type="checkbox"] {
     width: 50%;
+    margin-bottom: 20px;
 }
 
 .input-holder button {
@@ -221,14 +241,12 @@
     border-radius: 5px;
 }
 
-
 .edit-image-holder{
    width: 100%; 
    height: 100%;
    position:  absolute;
    left: 0;
    top: 0;
-
    display: none;
 }
 
@@ -261,6 +279,60 @@
     width: 50%;
     padding: 5px;
     position: absolute;
+    border: 2px solid black;
     left: 25%;
-    bottom: 10%;
+    bottom: 7%;
+    animation: light 5s linear infinite;
+    z-index: 9999;
+    text-align: center;
+    cursor: pointer;
+}
+
+.set-image-btn:hover {
+    animation: light .3s linear infinite;
+}
+
+@keyframes light{
+    0%{
+        border-top: 2px solid purple;
+        border-bottom: 2px solid gold;
+        border-left: 2px solid red;
+        border-right: 2px solid green;
+        background: yellow;
+        color: black;
+    }
+    25% {
+        border-top: 2px solid gold;
+        border-bottom: 2px solid purple;
+        border-left: 2px solid green;
+        border-right: 2px solid red;
+        background: green;
+        color: black;
+
+    }
+    50%{
+        border-top: 2px solid rgb(0, 163, 68);
+        border-bottom: 2px solid rgb(180, 163, 3);
+        border-left: 2px solid rgb(99, 14, 94);
+        border-right: 2px solid rgb(9, 76, 114);
+        background: purple;
+        color: white;
+
+    }
+    75% {
+        border-top: 2px solid rgb(229, 147, 147);
+        border-bottom: 2px solid rgb(124, 3, 180);
+        border-left: 2px solid rgb(99, 14, 25);
+        border-right: 2px solid rgb(23, 255, 15);
+        background: rgb(255, 0, 0);
+        color: black;
+    }
+    100%{
+        border-top: 2px solid rgb(163, 52, 0);
+        border-bottom: 2px solid rgb(131, 129, 109);
+        border-left: 2px solid rgb(255, 0, 238);
+        border-right: 2px solid rgb(207, 105, 255);
+        background: rgb(184, 184, 168);
+        color: black;
+    }
 }

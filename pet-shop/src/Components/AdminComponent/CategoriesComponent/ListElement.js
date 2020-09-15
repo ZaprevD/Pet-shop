@@ -1,24 +1,23 @@
 import React, { useState } from "react";
-import Category from "./Category";
+import Actions from "./Actions";
+import EditCategoryForm from "./EditCategoryForm";
 const ListElement = props => {
 
-    const [showChildrenElements, setShowChildrenElements] = useState(false);
-    const [sub, setSub] = useState([]);
+    const [showEditForm, setShowEditForm] = useState(false);
+    
+    const setDefaultView = e => setShowEditForm(false);
 
-    const showChildrenHandler = async e => {
-        e.stopPropagation();
-        if (e.target.classList.contains('arrow')) {
-            e.target.classList.toggle('arrow-down');
-            await setSub(props.category.children); 
-            setShowChildrenElements(!showChildrenElements);
-        }
+    const showFormHandler = e => {
+        setDefaultView();
+        setShowEditForm(true);
     };
 
     return (
-        <li className={props.class} onClick={showChildrenHandler}>
-            {showChildrenElements ? sub.map(el => <Category key={el.id} deleteHandler={props.deleteHandler} category={el} />) : null}
-        </li>
-    )   
+        !showEditForm ? <li className={props.class} > {props.category.NAME}
+            <Actions delete={props.deleteCategory} id={props.category.Id} isShow={showEditForm} showForm={showFormHandler} />
+        </li> : <EditCategoryForm defaultView={setDefaultView} editCategory={props.editCategory}
+        id={props.category.Id} name={props.category.NAME} />
+    )
 }
 
 export default ListElement;

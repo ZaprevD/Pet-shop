@@ -2,10 +2,17 @@
     width: 100%;
     display: flex;
     background: rgb(62, 255, 62);
+    position: fixed;
+    top:0;
+    z-index: 9999;
 }
 
-.box-50 {
-    width: 50%;
+.box-35 {
+    width: 35%;
+}
+
+.box-65 {
+    width: 65%;
 }
 
 .main-list{
@@ -16,12 +23,18 @@
 
 .main-list li {
     background: khaki;
-    padding: 15px 30px;
+    padding: 10px 18px;
+    border-radius: 10px;
+}
+
+.main-list li:hover {
+    background: rgb(255, 255, 100); 
 }
 
 a {
     text-decoration: none;
     color: rgb(0, 0, 0);
+    padding: 7px 10px;
 }
 
 .main-list a.active li{
@@ -30,12 +43,96 @@ a {
 }
 
 .image-holder{
-    width: 8%;
+    width: 7%;
     position: absolute;
     border-radius: 50%;
     overflow: hidden;
-    left: 7%;
+    left: 10%;
+    padding: 10px;
+    background: rgb(62, 255, 62);
 }
+
+.small-menu {
+    width: auto;
+    float: none;
+    padding: 0;
+}
+
 .image-holder img {
     width: 100%;
+    border-radius: 50%;
 }
+
+.hamburger-menu-bars{
+    display: none;
+}
+
+@media(max-width: 620px){ 
+
+    .main-list {
+        position: absolute;
+        display: none;
+        width: 80%;
+        right: 0;
+        top: 100%;
+        flex-direction: column;
+    }
+
+    .image-holder {
+        position: relative;
+        width: 35%;
+    }
+    
+    .hamburger-menu-bars {
+        display: block;
+        color: red;
+        height: 90%;
+    }
+
+    .small-menu {
+        width: 20%;
+        float: right;
+        padding: 10px 3px;
+    }
+
+    .small-menu:hover .main-list {
+        display: flex;
+    }
+}
+
+    @media (min-width: 621px) and (max-width: 970px){
+    
+        .main-list {
+            position: absolute;
+            display: none;
+            width: 80%;
+            right: 0;
+            top: 100%;
+            flex-direction: column;
+        }
+    
+        .image-holder {
+            position: relative;
+            width: 10%;
+        }
+        
+        .hamburger-menu-bars {
+            display: block;
+            color: red;
+            height: 90%;
+            width: 70%;
+        }
+    
+        .small-menu {
+            width: 10%;
+            float: right;
+            padding: 10px 3px;
+        }
+    
+        .small-menu:hover .main-list {
+            display: flex;
+        }
+                    
+ }
+
+
