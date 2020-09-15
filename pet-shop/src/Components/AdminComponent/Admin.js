@@ -21,7 +21,7 @@ const Admin = props => {
                 break;
             case 500:
                 setIsLoading(false);
-                setMessage("Something went wrong please try again latter");
+                setMessage("Настана серверска грешка ве молам обидетесе подоцна!");
                 break;
             default:
                 setIsLoading(false);
@@ -46,9 +46,10 @@ const Admin = props => {
         setIsLoading(true);
         let data = await updateProduct(name, desc, price, id, actionProduct);
         if (data.status !== 200) {
-            setMessage("Something went wrong, please try again latter");
+            setMessage("Настана серверска грешка ве молам обидетесе подоцна!");
             setIsLoading(false);
         } else {
+            alert(data.data);
             await fetchData();
             setIsLoading(false);
         }
@@ -58,9 +59,10 @@ const Admin = props => {
         setIsLoading(true);
         let res = await deleteProduct(id);
         if (res.status === 200) {
+            alert(res.data);
             fetchData();
         } else {
-            setMessage("Something went wrong please try again latter");
+            setMessage("Настана серверска грешка ве молам обидетесе подоцна!");
             setIsLoading(false);
         }
     };
@@ -68,12 +70,23 @@ const Admin = props => {
     const addProductHandler = async data => {
         setIsLoading(true);
         let res = await addNewProduct(data);
-        if (res.status === 200) {
-            fetchData();
-        } else {
-            setMessage("Something went wrong please try again latter");
-            setIsLoading(false);
-        }
+        switch (parseInt(res.status)) {
+            case 200:
+                alert(res.data);
+                fetchData();
+                break;
+            case 415:
+                setIsLoading(false);
+                setMessage("Погрешен Формат, ве молам внесете 'PNG ' или ' JPG' Формат на слика.");
+                break;
+            case 413:
+                setIsLoading(false);
+                setMessage("Сликата е преголема ве молам внесете слика максимум до 8,50MB");
+                break;
+            default:
+                setIsLoading(false);
+                setMessage("Настана серверска грешка ве молам обидетесе подоцна!");
+        };
     };
 
     const hideErr = () => setMessage("");

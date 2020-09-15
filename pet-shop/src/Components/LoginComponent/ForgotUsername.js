@@ -26,11 +26,11 @@ const ForgotUsername = props => {
                 setError("User not found!");
                 setLoading(false);
             } else {
-                setError(`Something went wrong, please try again latter`);
+                setError(`Настана серверска грешка ве молам обидетесе подоцна!`);
                 setLoading(false);
             }
         } else {
-            setError("Invalid email address");
+            setError("Внесовте погрешна емаил адреса, обидете се повторно");
             setLoading(false);
         }
     }

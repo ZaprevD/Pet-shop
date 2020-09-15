@@ -22,10 +22,10 @@ const ForgotPassword = props => {
             setMessage(res.data);
             setLoading(false);
         } else if (parseInt(res.status) === 404) {
-            setError("User not found");
+            setError("Корисникот не е пронајден.");
             setLoading(false);
         } else {
-            setError("Something went wrong, please try again latter.");
+            setError("Настана серверска грешка ве молам обидетесе подоцна!");
             setLoading(false);
         }
     }

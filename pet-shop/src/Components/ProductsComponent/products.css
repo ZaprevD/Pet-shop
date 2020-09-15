@@ -52,6 +52,10 @@
   position: relative;
 }
 
+.products-window-holder a {
+  width: 47%;
+}
+
 .client-categories-menu{
   margin: 7px;
   padding: 7px;
@@ -77,9 +81,8 @@
 }
 
 .product-image-holder {
-  height: 100%;
+  height: 97%;
   width: 100%;
-  transition: all 0.5s linear;
   overflow: hidden;
   background: transparent;
   border-radius: 5px;
@@ -95,9 +98,9 @@
 }
 
 .product-holder-box {
-    width: 48%;
+    width: 100%;
     height: 300px;
-    margin: 10px;
+    margin: 10px 0;
     padding: 1px;
     background: rgb(164, 255, 164);
     border-radius: 5px;
@@ -105,10 +108,6 @@
 
 .box-50 {
   overflow: hidden;
-}
-
-.product-image-holder:hover {
-  transform: scale(1.2);
 }
 
 .price-holder{
@@ -124,6 +123,87 @@
   display: none;
 }
 
+.product-info-window-holder {
+  position: fixed;
+  width: 80%;
+  height: 91.5vh;
+  left: 20%;
+  top: 8.5%;
+  border: 1px solid black;
+  background: cornsilk;
+}
+
+.product-info-window-header {
+  width: 100%;
+  padding: 3px;
+  border-bottom: 1px solid black;
+  text-align: center;
+  position: relative;
+}
+
+.close-box-holder {
+  position: absolute;
+  width: 5%;
+  height: 100%;
+  right: -3px;
+  top: 0;
+  cursor: pointer;
+}
+
+.close-icon {
+  width: 100%;
+  height: 100%;
+  color: red;
+}
+
+.close-box-holder:hover .close-icon {
+  color: rgb(148, 3, 3);
+}
+
+.box-100-flex {
+  width: 100%;
+  height: 92%;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.box-50 {
+  width: 50%;
+  height: 100%;
+}
+
+.product-info-window-holder .box-50 {
+  padding: 1% 1% ;
+}
+
+.img-img {
+  width: 100%;
+  height: 100%;
+  transition: all .3s linear;
+}
+
+.box-100-flex .box-50 div.image-box-window {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.box-100-flex .box-50 div.image-box-window .img-img:hover {
+  transform:  scale(1.2);
+}
+
+.description-box {
+  width: 95%;
+  height: 90%;
+  margin: 0 auto;
+  padding: 10px;
+  text-align: center;
+  font-size: 1.3em;
+}
+.price-box {
+  text-align: center;
+}
+
 @media(max-width: 620px){ 
   .menu-window {
     display: none;
@@ -132,6 +212,23 @@
     height: 100%;
     z-index: 9999;
     top: 30%;
+  }
+
+  .product-info-window-holder {
+    width: 99%;
+    height: 85.5vh;
+    left: 0.5%;
+    top: 19%;
+    background: cornsilk;
+  }
+
+  .close-box-holder {
+    right: 0;
+  }
+
+  .products-window-holder a {
+    width: 100%;
+    margin: 0 auto;
   }
 
   .hamburger-menu-icon {
@@ -163,14 +260,47 @@
 }
 
 @media (min-width: 621px) and (max-width: 970px){
-  .product-holder-box {
-    width: 90%;
-    margin: 10px auto;
+  .products-window-holder a {
+    width: 95%;
+    margin: 0 auto;
+  }
+
+  .product-info-window-holder {
+    width: 80%;
+    height: 88.5vh;
+    left: 20%;
+    top: 11%;
+    border: 1px solid black;
+    background: cornsilk;
+  }
+  .close-box-holder {
+    right: 1%;
   }
 }
   @media (min-width: 971px) and (max-width: 1262px){
-    .product-holder-box {
+    .products-window-holder a {
+      width: 85%;
+      margin: 0 auto;
+    }
+
+    .product-info-window-holder {
+      width: 99%;
+      height: 85.5vh;
+      left: 0.5%;
+      top: 28%;
+      border: 1px solid black;
+      background: cornsilk;
+    }
+
+    .product-info-window-holder {
       width: 80%;
-      margin: 10px auto;
+      height: 87vh;
+      left: 20%;
+      top: 12.5%;
+      border: 1px solid black;
+      background: cornsilk;
+    }
+    .close-box-holder {
+      right: 1%;
     }
  }

@@ -145,7 +145,13 @@ const config = {
 
 export const uploadFile = (id, file) => {
     return axios.patch(`/api/change/picture/${id}`, file, config)
-        .then(res => res.status).catch(err => err.message);
+        .then(res => {
+            return { status: res.status, data: res.data }
+        }).catch(err => {
+            const msg = err.message;
+            let status = msg.substr(msg.indexOf("code") + 5);
+            return { status: status };
+        });
 }
 
 export const getAllCategories = () => {

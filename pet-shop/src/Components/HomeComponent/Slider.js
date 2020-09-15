@@ -25,7 +25,7 @@ const Slider = props => {
             setProductsOnAction(res.data);
             setLoading(false);
         } else {
-            setError(`Something went wrong, please try again latter`);
+            setError(`Настана серверска грешка ве молам обидетесе подоцна!`);
             setLoading(false);
         }
 
@@ -48,7 +48,7 @@ const Slider = props => {
                 <div className="cards-slider">
                     {productsOnAction.length !== 0 ?
                         <div>
-                            <div className="slide-btns" id="right-btn" onClick={handleNext}>
+                            <div  className="slide-btns" id="right-btn" onClick={handleNext}>
                                 <FaAngleRight className="icon-arrow" />
                             </div>
                             <div className="slide-btns" id="left-btn" onClick={handlePrevius}>

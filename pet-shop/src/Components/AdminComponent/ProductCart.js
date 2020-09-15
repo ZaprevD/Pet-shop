@@ -11,7 +11,7 @@ const ProductCart = props => {
         setShowEditForm(false)
     }
     const deleteHandler = async () => {
-        let deleteItem = window.confirm("Are you sure you want to delete this product?");
+        let deleteItem = window.confirm("Дали сте сигурен дека сакате да го избришете овој производ?");
         if (deleteItem) {
             await props.delete(props.id);
         }

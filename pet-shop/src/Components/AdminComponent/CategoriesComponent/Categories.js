@@ -38,13 +38,14 @@ const Categories = props => {
         switch (inf.status) {
             case "409":
                 setIsLoading(false);
-                setError("Category with this name alredy exists");
+                setError(`Категоријата постои!`);
                 break;
             case "500":
                 setIsLoading(false);
-                setError("Something went wrong, please try again latter");
+                setError("Настана серверска грешка ве молам обидетесе подоцна!");
                 break;
             default:
+                alert(inf.data);
                 setIsLoading(false);
                 fetchCategories();
         }
@@ -54,9 +55,10 @@ const Categories = props => {
         setIsLoading(true);
         let res = await deleteCategory(id);
         if (res.status === 200) {
+            alert(res.data);
             fetchCategories();
         } else {
-            setError('Something went wrong, please try again latter');
+            setError('Настана серверска грешка ве молам обидетесе подоцна!');
             setIsLoading(false);
         }
     }
@@ -66,14 +68,15 @@ const Categories = props => {
         const inf = await addTopCategory(name);
         switch (inf.status) {
             case "409":
-                setError("Category alredy exists");
+                setError(`Категоријата постои!`);
                 setIsLoading(false);
                 break;
             case "500":
-                setError("Something went wrong, please try again latter");
+                setError("Настана серверска грешка ве молам обидетесе подоцна!");
                 setIsLoading(false);
                 break;
             default:
+                alert(inf.data);
                 fetchCategories();
                 setIsLoading(false);
         }

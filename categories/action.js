@@ -14,9 +14,9 @@ updateCategory = async (req, res) => {
         const dbCategory = await query.getCategoryByNameQuery(req.body.name);
         if (dbCategory[0] === undefined || dbCategory[0].Id === parseInt(req.params.id)) {
             await query.updateCategoryQuery(req.body.name, req.params.id);
-            res.status(200).send("Category Updated");
+            res.status(200).send("Податоците се изменети!");
         } else {
-            res.status(409).send(`Category with this name alredy exists`);
+            res.status(409).send(`Категорија со ова име веќе постои!`);
         }
     } catch (error) {
         res.status(500).send(error);
@@ -26,7 +26,7 @@ updateCategory = async (req, res) => {
 deleteCategory = async (req, res) => {
     try {
         await query.deleteCategoryQuery(req.params.id);
-        res.status(200).send("Category Deleted!");
+        res.status(200).send("Категоријата е избришана!");
     } catch (error) {
         res.status(500).send(error);
     };

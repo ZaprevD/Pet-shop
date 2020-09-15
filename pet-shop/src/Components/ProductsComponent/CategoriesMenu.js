@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import CategoryElement from "./CategoryElement";
 import { getAllCategories, getProductsByCategoryId, getAllProducts } from "../adminFunctions";
 import { InfoWindow, Loader } from "../Helper";
-import { withRouter, NavLink } from "react-router-dom";
+import { withRouter, NavLink, Link } from "react-router-dom";
 import { FaBars } from "react-icons/fa";
 import Product from "./Product";
 const CategoriesMenu = props => {
@@ -35,7 +35,7 @@ const CategoriesMenu = props => {
                 setProducts(allProducts.data);
                 break;
             case 500:
-                setErrorMsg("Something went wrong, Please try again latter");
+                setErrorMsg("Настана серверска грешка ве молам обидетесе подоцна!");
                 setIsLoading(false);
                 break;
             default:
@@ -43,7 +43,7 @@ const CategoriesMenu = props => {
                 setIsLoading(false);
                 setProducts(allProducts.data);
         }
-        if (allProducts.data.length === 0) setErrorMsg("No products found!");
+        if (allProducts.data.length === 0) setErrorMsg("Моментално не се пронајдени производи.");
     }
 
     const callBack = async id => {
@@ -51,15 +51,15 @@ const CategoriesMenu = props => {
         if (id !== null) {
             const products = await getProductsByCategoryId(id);
             if (products.data.length === 0) {
-                setErrorMsg("Not products found in this category!");
+                setErrorMsg("Не се пронајдени производи во оваа категорија.");
                 setIsLoading(false);
             } else {
                 if (products.status === 200) {
                     setErrorMsg("");
                     setProducts(products.data);
                     setIsLoading(false);
-                }else{
-                    setErrorMsg("Something went wrong, please try again latter");
+                } else {
+                    setErrorMsg("Настана серверска грешка ве молам обидетесе подоцна!");
                     setIsLoading(false);
                 }
             }
@@ -84,8 +84,11 @@ const CategoriesMenu = props => {
                 </div>
             </div>
             <div className="products-window-holder">
-                {errorMsg === "" ? products.map(el => <Product key={el.Id} desc={el.Description}
-                    name={el.Name} picture={el.Image_path} price={el.Price} />) : <InfoWindow message={errorMsg} />}
+                {errorMsg === "" ? products.map(el => <Link className="product-link" key={el.Id} to={{
+                    pathname: `${el.Id}`,
+                    state: el
+                }}> <Product desc={el.Description}
+                    name={el.Name} picture={el.Image_path} price={el.Price} /> </Link>) : <InfoWindow message={errorMsg} />}
             </div>
         </div>
     )

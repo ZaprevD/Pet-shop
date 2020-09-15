@@ -1,6 +1,7 @@
 import React from "react";
 import Home from "./Components/HomeComponent/Home";
 import Products from "./Components/ProductsComponent/Products";
+import ProductInfoWindow from "./Components/ProductsComponent/ProductInfoWindow";
 import About from "./Components/AboutComponent/About";
 import Contact from "./Components/ContactComponent/Contact";
 import LoginAdmin from "./Components/LoginComponent/LoginAdmin";
@@ -17,6 +18,7 @@ export default () =>
         <Header />
         <Route exact path="/" component={Home} />
         <Route path="/products" component={Products} />
+        <Route path="/products/:id" component={ProductInfoWindow} />
         <Route exact path="/about" component={About} />
         <Route exact path="/contact" component={Contact} />
         <Route exact path="/loginadmin" component={LoginAdmin} />

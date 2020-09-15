@@ -27,7 +27,7 @@ const Users = props => {
                 setIsLoading(false);
                 break;
             case 500:
-                setMessage("Something went wrong please try again latter");
+                setMessage("Настана серверска грешка ве молам обидетесе подоцна!");
                 setIsLoading(false);
                 break;
             default:
@@ -41,14 +41,15 @@ const Users = props => {
         let inf = await editUser(data, id);
         switch (inf.status) {
             case '409':
-                setMessage("Username or Email alredy taken");
+                setMessage("Корисничкото име или емаил адресата веќе постои!");
                 setIsLoading(false);
                 break;
             case '500':
-                setMessage("Something went wrong, please try again latter");
+                setMessage("Настана серверска грешка ве молам обидетесе подоцна!");
                 setIsLoading(false);
                 break;
             default:
+                alert(inf.data);
                 fetchUsers();
         }
     }
@@ -57,12 +58,13 @@ const Users = props => {
         let inf = await registerUser(data);
         switch (inf.status) {
             case "409":
-                setMessage("Username or Email alredy taken");
+                setMessage("Корисничкото име или емаил адресата веќе постои!");
                 break;
             case "500":
-                setMessage("Something went wrong, please try again latter");
+                setMessage("Настана серверска грешка ве молам обидетесе подоцна!");
                 break;
             default:
+                alert(inf.data);
                 fetchUsers();
         }
     }
@@ -71,9 +73,10 @@ const Users = props => {
         setIsLoading(true);
       let res =  await deleteUser(id);
       if(res.status === 200) {
+          alert(res.data);
           fetchUsers();
       }else {
-          setMessage(`Something went wrong, please try again latter`);
+          setMessage(`Настана серверска грешка ве молам обидетесе подоцна!`);
           setIsLoading(false);
       }
     }

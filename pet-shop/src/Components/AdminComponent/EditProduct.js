@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { uploadFile } from "../adminFunctions";
-import { productNameValidation, ErrorWindow, productPriceValidation } from "../Helper";
+import { productNameValidation, ErrorWindow, productPriceValidation, Loader } from "../Helper";
 const EditProduct = props => {
 
     const [name, setName] = useState(props.name);
@@ -9,6 +9,7 @@ const EditProduct = props => {
     const [onAction, setOnAction] = useState(props.onAction);
     const [newImage, setNewImage] = useState("");
     const [error, setError] = useState("");
+    const [loading, setLoading] = useState(false);
 
     const onNameChangeHandler = e => setName(e.target.value);
     const onDescChangeHandler = e => setDesc(e.target.value)
@@ -23,11 +24,26 @@ const EditProduct = props => {
     }
 
     const changeImageSubmit = async () => {
+        setLoading(true);
         const fd = new FormData();
         fd.append("productImage", newImage)
         let res = await uploadFile(props.id, fd);
-        if(res !== 200) {
-            setError("Something went wrong, please try again latter."); 
+        switch (parseInt(res.status)) {
+            case 200:
+                setLoading(false);
+                alert(res.data);
+                break;
+            case 415:
+                setLoading(false);
+                setError("Погрешен Формат, ве молам внесете 'PNG ' или ' JPG' Формат на слика.");
+                break;
+            case 413:
+                setLoading(false);
+                setError("Сликата е преголема ве молам внесете слика максимум до 8,50MB");
+                break;
+            default:
+                setLoading(false);
+                setError("Настана серверска грешка ве молам обидетесе подоцна!");
         }
     }
 
@@ -46,6 +62,7 @@ const EditProduct = props => {
     return (
         <React.Fragment>
             {error !== "" ? <ErrorWindow message={error} hideErrorMessage={hideErrorMsg} /> : null}
+            {loading ? <Loader /> : null}
             <div className="product-cart">
                 <div className="box-50">
                     <div style={style} className="image-box">

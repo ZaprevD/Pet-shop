@@ -31,15 +31,15 @@ const LoginAdmin = props => {
                 break;
             case 404:
                 setIsLoading(false);
-                setError("User not found");
+                setError("Корисникот не е пронајден.");
                 break;
             case 400:
                 setIsLoading(false);
-                setError("Invalid Password");
+                setError("Внесовте погрешна лозинка, обидете се повторно.");
                 break;
             default:
                 setIsLoading(false);
-                setError(`Something went wrong. Please try again latter`);
+                setError(`Настана серверска грешка ве молам обидетесе подоцна!`);
         };
     };
 
@@ -57,15 +57,15 @@ const LoginAdmin = props => {
                     <input type="password" placeholder="Password" />
                     <button type="submit">Login</button>
                     <div className="forgot-paths">
-                    <div>
-                        <Link to="loginadmin/forgot/username">Forgot Username?</Link>
+                        <div>
+                            <Link to="loginadmin/forgot/username">Forgot Username?</Link>
+                        </div>
+                        <div>
+                            <Link to="loginadmin/forgot/password">Forgot Password?</Link>
+                        </div>
                     </div>
-                    <div>
-                        <Link to="loginadmin/forgot/password">Forgot Password?</Link>
-                    </div>
-                </div>
                 </form>
-             
+
             </div>
         </div>
     );

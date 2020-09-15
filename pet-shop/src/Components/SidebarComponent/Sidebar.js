@@ -25,8 +25,8 @@ const Sidebar = props => {
     return (
         <div className="sidebar-window">
             <ul>
-                <li>{props.location.pathname === "/admin/users" ? <Link to="/admin"> Производи </Link> : <Link to="/admin/users"> Корисници </Link> }</li>
-                <li><Link to="/admin/categories">Категории</Link></li>
+                <li>{props.location.pathname === "/admin/users" ? <Link className="arrow"  to="/admin"> Производи </Link> : <Link className="arrow" to="/admin/users"> Корисници </Link> }</li>
+                <li><Link className="arrow"  to="/admin/categories">Категории</Link></li>
     {props.location.pathname === "/admin/users" ? <li onClick={showNewUserFormHandler}>{!showNewUserForm ? "Додади нов корисник" : "Откажи"}</li>:
                 props.location.pathname === "/admin/categories" ? null : <li onClick={showNewProductFormHandler}>{!showNewProductForm ? "Додади нов производ" : "Откажи"}</li> }
                 <li onClick={logOut}>Одјави се</li>
