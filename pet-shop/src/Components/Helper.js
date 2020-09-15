@@ -32,7 +32,7 @@ export const isResetLinkExpired = decodedToken => {
         return true;
     };
     return false;
-}
+};
 
 const hasNumbers = (t) => {
     return /\d/.test(t);
@@ -138,8 +138,8 @@ export const AlertWindow = props => {
             <p>{props.message}</p>
             <button onClick={props.action}>OK</button>
         </div>
-    )
-}
+    );
+};
 
 export const NotificationWindow = props => {
     return (
@@ -149,5 +149,5 @@ export const NotificationWindow = props => {
             <Link style={{color: "purple"}} to="/loginadmin" > Login now</Link>
             </p>
         </div>
-    )
-}
+    );
+};

@@ -27,8 +27,8 @@ const Admin = props => {
                 setIsLoading(false);
                 setMessage("");
                 setProducts(data.data);
-        }
-    }
+        };
+    };
 
     useEffect(() => {
         if (!localStorage.authToken) {
@@ -38,8 +38,8 @@ const Admin = props => {
                 logOut();
             } else {
                 fetchData();
-            }
-        }
+            };
+        };
     }, [props.history]);
 
     const updateProductHandler = async (name, desc, price, id, actionProduct) => {
@@ -52,7 +52,7 @@ const Admin = props => {
             alert(data.data);
             await fetchData();
             setIsLoading(false);
-        }
+        };
     };
 
     const deleteProductHandler = async id => {
@@ -64,7 +64,7 @@ const Admin = props => {
         } else {
             setMessage("Настана серверска грешка ве молам обидетесе подоцна!");
             setIsLoading(false);
-        }
+        };
     };
 
     const addProductHandler = async data => {

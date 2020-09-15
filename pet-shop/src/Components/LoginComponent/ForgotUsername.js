@@ -15,7 +15,7 @@ const ForgotUsername = props => {
         e.preventDefault();
         let data = {
             email: e.target[0].value
-        }
+        };
         if (emailValidation(data.email).isOk) {
             let res = await forgotUsernameMail(data);
             if (res.status === 200) {
@@ -36,18 +36,18 @@ const ForgotUsername = props => {
     }
 
     const timerFunc = () => {
-        setDisableButton(true)
+        setDisableButton(true);
         let i = 50;
         const time = setInterval(() => {
             i--
             setTimer(i);
             if (i === 0) {
                 setTimer(0);
-                clearInterval(time)
-                setDisableButton(false)
+                clearInterval(time);
+                setDisableButton(false);
             };
         }, 1000);
-    }
+    };
 
     const hideErr = () => setError("");
 
@@ -69,6 +69,6 @@ const ForgotUsername = props => {
                 </form>
             </div>
         </div>
-    )
-}
+    );
+};
 export default withRouter(ForgotUsername);

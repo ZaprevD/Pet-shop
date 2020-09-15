@@ -8,7 +8,6 @@ const Products = props => {
         <React.Fragment>
             <CategoriesMenu />
         </React.Fragment>
-    )
-}
-
+    );
+};
 export default Products;

@@ -22,18 +22,17 @@ const NewProductForm = props => {
         if (data !== undefined) {
             if (data.data[0] !== undefined) {
                 setSelectedCategory(data.data[0].NAME);
-            }
-        }
+            };
+        };
         setCategories(data.data);
-    }
+    };
 
     const onNameChange = e => setName(e.target.value);
     const onDescChange = e => setDesc(e.target.value);
     const onPriceChange = e => setPrice(e.target.value);
     const onActionChange = e => setOnAction(e.target.checked);
-    const onCategoryChange = e => {
-        setSelectedCategory(e.target.value);
-    }
+    const onCategoryChange = e => setSelectedCategory(e.target.value);
+
     const onImageChange = e => {
         setImage(e.target.files[0]);
         setImageName(e.target.value.substring(e.target.value.lastIndexOf("\\") + 1))
@@ -56,8 +55,8 @@ const NewProductForm = props => {
             fd.append("categoryName", selectedCategory);
             fd.append("productImage", image);
             await props.addNew(fd);
-        }
-    }
+        };
+    };
 
     return (
         <div className="new-product-form">
@@ -93,6 +92,6 @@ const NewProductForm = props => {
                 </div>
             </form>
         </div>
-    )
-}
+    );
+};
 export default NewProductForm;

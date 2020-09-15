@@ -8,7 +8,6 @@ const Home = props => {
                 <h1>Производи на акција</h1>
                 <Slider />
             </div>
-    )
-}
-
+    );
+};
 export default Home;

@@ -4,7 +4,7 @@ const auth = {
     'headers': {
         'Authorization': 'Bearer ' + localStorage.authToken
     }
-}
+};
 
 export const adminLogin = (data) => {
     return axios.post("/api/login", data)
@@ -17,13 +17,13 @@ export const adminLogin = (data) => {
             let status = msg.substr(msg.indexOf("code") + 4);
             return status;
         });
-}
+};
 
 export const logOut = () => {
     localStorage.removeItem("authToken");
     window.location.href = "/loginadmin";
-}
-
+};
+                                        // PRODUCTS OPERATIONS
 export const getAllProducts = () => {
     return axios.get(`/api/products`, auth)
         .then(res => {
@@ -33,7 +33,7 @@ export const getAllProducts = () => {
             let status = msg.substr(msg.indexOf("code") + 4);
             return { status: status };
         });
-}
+};
 
 export const getProductsByCategoryId = category => {
     return axios.get(`/api/products/category/${category}`)
@@ -44,7 +44,7 @@ export const getProductsByCategoryId = category => {
             let status = msg.substr(msg.indexOf("code") + 4);
             return { status: status };
         });
-}
+};
 
 export const updateProduct = (name, desc, price, id, action) => {
     const data = { name: name, desc: desc, price: price, on_action: action }
@@ -56,7 +56,7 @@ export const updateProduct = (name, desc, price, id, action) => {
             let status = msg.substr(msg.indexOf("code") + 4);
             return { status: status };
         });
-}
+};
 
 export const deleteProduct = (id) => {
     return axios.delete(`/api/product/${id}`, auth)
@@ -67,7 +67,36 @@ export const deleteProduct = (id) => {
             let status = msg.substr(msg.indexOf("code") + 4);
             return { status: status };
         });
-}
+};
+
+export const getProductsOnAction = () => {
+    return axios.get("/api/products/on-action")
+        .then(res => {
+            return { data: res.data, status: res.status }
+        }).catch(err => {
+            const msg = err.message;
+            let status = msg.substr(msg.indexOf("code") + 4);
+            return { status: status };
+        });
+};
+
+const config = {
+    'headers': {
+        'Authorization': 'Bearer ' + localStorage.authToken,
+        'content-type': 'multipart/form-data'
+    }
+};
+
+export const uploadFile = (id, file) => {
+    return axios.patch(`/api/change/picture/${id}`, file, config)
+        .then(res => {
+            return { status: res.status, data: res.data }
+        }).catch(err => {
+            const msg = err.message;
+            let status = msg.substr(msg.indexOf("code") + 5);
+            return { status: status };
+        });
+};
 
 export const addNewProduct = data => {
     return axios.post(`/api/product`, data, auth)
@@ -79,8 +108,8 @@ export const addNewProduct = data => {
             let status = msg.substr(msg.indexOf("code") + 4);
             return { status: status };
         });
-}
-
+};
+                                      // USERS OPERATIONS
 export const getAllUsers = () => {
     return axios.get(`/api/users`, auth)
         .then(res => {
@@ -90,18 +119,7 @@ export const getAllUsers = () => {
             let status = msg.substr(msg.indexOf("code") + 4);
             return { status: status };
         });
-}
-
-export const getProductsOnAction = () => {
-    return axios.get("/api/products/on-action")
-        .then(res => {
-            return { data: res.data, status: res.status }
-        }).catch(err => {
-            const msg = err.message;
-            let status = msg.substr(msg.indexOf("code") + 4);
-            return { status: status };
-        });
-}
+};
 
 export const editUser = (data, id) => {
     return axios.put(`/api/user/${id}`, data, auth)
@@ -112,7 +130,7 @@ export const editUser = (data, id) => {
             let status = msg.substr(msg.indexOf("code") + 5);
             return { status: status };
         });
-}
+};
 
 export const registerUser = (data) => {
     return axios.post(`/api/register`, data, auth)
@@ -123,7 +141,7 @@ export const registerUser = (data) => {
             let status = msg.substr(msg.indexOf("code") + 5);
             return { status: status };
         });
-}
+};
 
 export const deleteUser = id => {
     return axios.delete(`/api/user/${id}`, auth)
@@ -134,26 +152,9 @@ export const deleteUser = id => {
             let status = msg.substr(msg.indexOf("code") + 5);
             return { status: status };
         });
-}
+};
 
-const config = {
-    'headers': {
-        'Authorization': 'Bearer ' + localStorage.authToken,
-        'content-type': 'multipart/form-data'
-    }
-}
-
-export const uploadFile = (id, file) => {
-    return axios.patch(`/api/change/picture/${id}`, file, config)
-        .then(res => {
-            return { status: res.status, data: res.data }
-        }).catch(err => {
-            const msg = err.message;
-            let status = msg.substr(msg.indexOf("code") + 5);
-            return { status: status };
-        });
-}
-
+                                      // CATEGORIES OPERATIONS
 export const getAllCategories = () => {
     return axios.get(`/api/categories`, auth).then(res => {
         return { status: res.status, data: res.data }
@@ -162,7 +163,7 @@ export const getAllCategories = () => {
         let status = msg.substr(msg.indexOf("code") + 5);
         return { status: status };
     });
-}
+};
 
 export const addTopCategory = (data) => {
     return axios.post('/api/top-cateogry', data, auth)
@@ -171,7 +172,7 @@ export const addTopCategory = (data) => {
             let status = msg.substr(msg.indexOf("code") + 5);
             return { status: status };
         });
-}
+};
 
 export const editCategory = (data, id) => {
     return axios.patch(`/api/edit-category/${id}`, data, auth)
@@ -182,7 +183,7 @@ export const editCategory = (data, id) => {
             let status = msg.substr(msg.indexOf("code") + 5);
             return { status: status };
         });
-}
+};
 
 export const deleteCategory = id => {
     return axios.delete(`/api/delete-category/${id}`, auth)
@@ -193,8 +194,8 @@ export const deleteCategory = id => {
             let status = msg.substr(msg.indexOf("code") + 5);
             return { status: status };
         });
-}
-
+};
+                            // FORGOT USERNAME / PASSWORD OPERATIONS
 export const sendResetPasswordMail = username => {
     return axios.put(`/api/resetpassword`, username)
         .then(res => {
@@ -204,7 +205,7 @@ export const sendResetPasswordMail = username => {
             let status = msg.substr(msg.indexOf("code") + 5);
             return { status: status };
         });
-}
+};
 
 export const forgotUsernameMail = email => {
     return axios.put(`/api/forgot/username`, email)

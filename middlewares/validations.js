@@ -127,4 +127,4 @@ productPriceValidation = (req, res, next) => {
 module.exports = {
     emailValidation, usernameValidation, passwordValidation, passwordValidationForExistingUser,
     productNameValidation, categoryNameValidation, productPriceValidation
-}
+};

@@ -23,5 +23,5 @@ app.use(middlewares.errorHandler);
 
 let port = process.env.PORT || 3002;
 app.listen(port, () => {
-    console.log(`Server is listening to port: ${port}`)
+    console.log(`Server is listening to port: ${port}`);
 });

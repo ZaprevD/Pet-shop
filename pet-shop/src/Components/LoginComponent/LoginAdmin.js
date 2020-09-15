@@ -70,5 +70,4 @@ const LoginAdmin = props => {
         </div>
     );
 };
-
 export default LoginAdmin;

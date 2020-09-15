@@ -29,8 +29,8 @@ const EditUser = props => {
             setError("");
             await props.editUser(data, props.id);
             props.cancel();
-        }
-    }
+        };
+    };
 
     return (
         <React.Fragment>

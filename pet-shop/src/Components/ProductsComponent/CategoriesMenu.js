@@ -91,6 +91,6 @@ const CategoriesMenu = props => {
                     name={el.Name} picture={el.Image_path} price={el.Price} /> </Link>) : <InfoWindow message={errorMsg} />}
             </div>
         </div>
-    )
-}
+    );
+};
 export default withRouter(CategoriesMenu);

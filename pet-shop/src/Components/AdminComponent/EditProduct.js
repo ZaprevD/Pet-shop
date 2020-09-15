@@ -12,7 +12,7 @@ const EditProduct = props => {
     const [loading, setLoading] = useState(false);
 
     const onNameChangeHandler = e => setName(e.target.value);
-    const onDescChangeHandler = e => setDesc(e.target.value)
+    const onDescChangeHandler = e => setDesc(e.target.value);
     const onPriceChangeHandler = e => setPrice(e.target.value);
     const onActionChangeHandler = e => setOnAction(e.target.checked);
     const onNewImageChangeHandler = e => setNewImage(e.target.files[0]);
@@ -21,7 +21,7 @@ const EditProduct = props => {
         backgroundImage: `url(${require(`../../../public/products-images/` + props.imgPath)})`,
         backgroundPosition: "center",
         backgroundSize: "cover"
-    }
+    };
 
     const changeImageSubmit = async () => {
         setLoading(true);
@@ -44,8 +44,8 @@ const EditProduct = props => {
             default:
                 setLoading(false);
                 setError("Настана серверска грешка ве молам обидетесе подоцна!");
-        }
-    }
+        };
+    };
 
     const hideErrorMsg = () => setError("");
 
@@ -56,8 +56,8 @@ const EditProduct = props => {
             setError(productPriceValidation(price).msg)
         } else {
             await props.update(name, desc, price, props.id, onAction);
-        }
-    }
+        };
+    };
 
     return (
         <React.Fragment>
@@ -94,7 +94,6 @@ const EditProduct = props => {
                 </div>
             </div>
         </React.Fragment>
-    )
-}
-
+    );
+};
 export default EditProduct;

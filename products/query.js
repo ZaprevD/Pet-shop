@@ -76,7 +76,7 @@ addNewProductQuery = (name, desc, price, onAction, categoryId,  image) => {
             };
         });
     });
-}
+};
 
 changeProductPictureQuery = (picture, id) => {
     const query = "UPDATE product SET Image_path = ? WHERE Id = ?";

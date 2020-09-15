@@ -27,7 +27,7 @@ wrongRouteHandler = (req, res, next) => {
     let error = new Error(`Route does not exists please try again with another route`);
     error.status = 404;
     next(error);
-}
+};
 
 errorHandler = (err, req, res, next) => {
     let errObj = {
@@ -37,6 +37,6 @@ errorHandler = (err, req, res, next) => {
         }
     };
     res.status(errObj.status).json(errObj);
-}
+};
 
 module.exports = { logger, wrongRouteHandler, errorHandler };

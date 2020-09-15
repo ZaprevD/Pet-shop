@@ -12,13 +12,13 @@ const User = props => {
         let isSure = window.confirm("Дали сте сигурни дека сакате да го избришете овој корисник?")
         if (isSure) {
             await props.deleteUser(props.id);
-        }
-    }
+        };
+    };
 
     const style = {
         backgroundColor: "silver",
         color: "black"
-    }
+    };
 
     return (
         <React.Fragment>
@@ -47,6 +47,6 @@ const User = props => {
                         cancel={setDefaultView} id={props.id} username={props.username} email={props.email} />}
             </div>
         </React.Fragment>
-    )
-}
+    );
+};
 export default User;

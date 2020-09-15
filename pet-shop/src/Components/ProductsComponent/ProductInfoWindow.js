@@ -7,7 +7,7 @@ const ProductInfoWindow = props => {
 
     const style = {
         display: "none"
-    }
+    };
 
     let style1 = null;
 
@@ -16,8 +16,8 @@ const ProductInfoWindow = props => {
             backgroundImage: `url(${require(`../../../public/products-images/` + location.state.Image_path)})`,
             backgroundPosition: "center",
             backgroundSize: "cover"
-        }
-    }
+        };
+    };
 
     const goBack = () => props.history.goBack();
 
@@ -45,8 +45,6 @@ const ProductInfoWindow = props => {
                 </div>
             </div>
         </div>
-    )
-
-}
-
+    );
+};
 export default withRouter(ProductInfoWindow);

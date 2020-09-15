@@ -8,19 +8,20 @@ const ProductCart = props => {
 
     const updateHandler = async (name, desc, price, id, action) => {
         await props.update(name, desc, price, id, action);
-        setShowEditForm(false)
+        setShowEditForm(false);
     }
     const deleteHandler = async () => {
         let deleteItem = window.confirm("Дали сте сигурен дека сакате да го избришете овој производ?");
         if (deleteItem) {
             await props.delete(props.id);
-        }
-    }
+        };
+    };
+
     const style = {
         backgroundImage: `url(${require(`../../../public/products-images/` + props.imgPath)})`,
         backgroundPosition: "center",
         backgroundSize: "cover"
-    }
+    };
 
     return (
         !showEditForm ? <div className="product-cart">
@@ -44,6 +45,6 @@ const ProductCart = props => {
             <button onClick={showEditHandler} className="edit-btn">Edit</button>
         </div> : <EditProduct imgPath={props.imgPath} onCancel={showEditHandler} id={props.id} name={props.name}
             update={updateHandler} onAction={props.onAction} price={props.price} desc={props.desc} />
-    )
-}
+    );
+};
 export default ProductCart;

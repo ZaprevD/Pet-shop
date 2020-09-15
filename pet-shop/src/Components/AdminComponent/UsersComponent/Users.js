@@ -33,8 +33,8 @@ const Users = props => {
             default:
                 setUsers(data.data);
                 setIsLoading(false);
-        }
-    }
+        };
+    };
 
     const editUserHandler = async (data, id) => {
         setIsLoading(true);
@@ -51,8 +51,8 @@ const Users = props => {
             default:
                 alert(inf.data);
                 fetchUsers();
-        }
-    }
+        };
+    };
 
     const addNewUserHandler = async data => {
         let inf = await registerUser(data);
@@ -66,8 +66,8 @@ const Users = props => {
             default:
                 alert(inf.data);
                 fetchUsers();
-        }
-    }
+        };
+    };
 
     const deleteUserHandler = async (id) => {
         setIsLoading(true);
@@ -78,8 +78,8 @@ const Users = props => {
       }else {
           setMessage(`Настана серверска грешка ве молам обидетесе подоцна!`);
           setIsLoading(false);
-      }
-    }
+      };
+    };
 
     const hideError = () => setMessage("");
 

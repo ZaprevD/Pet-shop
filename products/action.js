@@ -59,10 +59,10 @@ addNewProduct = async (req, res) => {
                     await query.addNewProductQuery(req.body.name, req.body.desc, req.body.price, req.body.onAction, categoryId[0].Id, req.body.image);
                 } else {
                     return res.status(413).send("Сликата е преголема ве молам внесете слика максимум до 8,50MB");
-                }
+                };
             } else {
                 return res.status(415).send("Погрешен Формат, ве молам внесете 'PNG ' или ' JPG' Формат на слика.");
-            }
+            };
         } else {
             await query.addNewProductQuery(req.body.name, req.body.desc, req.body.price, req.body.onAction, categoryId[0].Id, req.body.image);
             res.status(200).send("Производот е додаден");
@@ -90,10 +90,10 @@ changeProductPicture = async (req, res) => {
                     return res.status(200).send("Сликата е променета");
                 } else {
                     return res.status(413).send("Сликата е преголема ве молам внесете слика максимум до 8,50MB");
-                }
+                };
             } else {
                 return res.status(415).send("Погрешен Формат, ве молам внесете 'PNG ' или ' JPG' Формат на слика.");
-            }
+            };
         };
         res.status(400).send("Немате внесено слика");
     } catch (error) {
@@ -110,8 +110,7 @@ getProductsOnAction = async (req, res) => {
     };
 };
 
-
 module.exports = {
     getAllProducts, updateProduct, deleteProduct, addNewProduct, getProductsOnAction,
     changeProductPicture, getProductsByCategory
-}
+};

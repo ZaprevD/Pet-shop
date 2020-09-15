@@ -21,10 +21,10 @@ getUserByIdQuery = id => {
                 reject(error);
             }else{
                 resolve(results);
-            }
-        })
-    })
-}
+            };
+        });
+    });
+};
 
 getUserByUsernameQuery = (username) => {
     let query = "SELECT * FROM user WHERE Username = ?";
@@ -60,10 +60,10 @@ editUserQuery = (data, id) => {
                 reject(error);
             } else {
                 resolve();
-            }
-        })
-    })
-}
+            };
+        });
+    });
+};
 
 registerUserQuery = data => {
     let query = "INSERT INTO user (Username, Password, Email) VALUES (?, ?, ?)";
@@ -73,10 +73,10 @@ registerUserQuery = data => {
                 reject(error);
             } else {
                 resolve();
-            }
-        })
-    })
-}
+            };
+        });
+    });
+};
 
 deleteUserQuery = id => {
     let query = "DELETE FROM user WHERE Id = ?";
@@ -86,10 +86,10 @@ deleteUserQuery = id => {
                 reject(error);
             } else {
                 resolve();
-            }
-        })
-    })
-}
+            };
+        });
+    });
+};
 
 module.exports = { getAllUsersQuery, getUserByUsernameQuery, editUserQuery,
     getUserByEmailQuery, registerUserQuery, deleteUserQuery, getUserByIdQuery };

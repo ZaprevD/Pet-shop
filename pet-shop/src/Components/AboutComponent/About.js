@@ -6,5 +6,5 @@ const About = props => {
         <h1>За Нас</h1>
     )
 
-}
+};
 export default About;
