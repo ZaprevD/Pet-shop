@@ -21,8 +21,21 @@ const CategoriesMenu = props => {
     const fetchCategories = async () => {
         setIsLoading(true);
         let data = await getAllCategories();
-        setCategories(data.data);
-        setIsLoading(false);
+        switch (parseInt(data.status)) {
+            case 200:
+                setCategories(data.data);
+                setIsLoading(false);
+                break;
+            case 500:
+                setErrorMsg("Настана серверска грешка ве молам обидетесе подоцна!");
+                setIsLoading(false);
+                break;
+            default:
+                setErrorMsg("");
+                setCategories(data.data);
+                setIsLoading(false);
+        }
+
     }
 
     const setFirstView = async () => {

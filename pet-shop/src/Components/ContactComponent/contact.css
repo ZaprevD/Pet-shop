@@ -1,0 +1,61 @@
+.contact-view {
+    width: 100%;
+    height: 100%;
+    padding: 50px 10px;
+}
+
+.contact-view h1 {
+    text-align: center;
+}
+
+.container-90-flex {
+    width: 90%;
+    margin: 0 auto;
+    padding: 5px;
+    display: flex;
+}
+
+.map-holder{
+    padding: 15px;
+}
+
+.contact-info-holder {
+    padding: 10px;
+}
+
+.contact-info-holder h3 {
+    margin: 20px;
+}
+
+.contact-info-holder p {
+    margin: 5px 20px;
+    font-size: 1.3em;
+}
+
+@media(max-width: 620px){ 
+
+    .container-90-flex {
+        flex-direction: column;
+    }
+    iframe{
+        width: 100%;
+    }
+}
+
+@media (min-width: 621px) and (max-width: 970px){ 
+    .container-90-flex {
+        flex-direction: column;
+    }
+    iframe{
+        width: 100%;
+    }
+}
+
+@media (min-width: 971px) and (max-width: 1262px){ 
+    .container-90-flex {
+        flex-direction: column;
+    }
+    iframe{
+        width: 100%;
+    }
+}

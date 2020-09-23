@@ -43,15 +43,15 @@ export const emailValidation = email => {
     var provider = email.substr(email.indexOf("@") + 1, email.lastIndexOf("."));
     var domain = email.substr(email.lastIndexOf(".") + 1);
     if (username === "" || username.length < 3) {
-        return { msg: "Check your e-email username", isOk: false }
+        return { msg: "Проверете го корисничкото име на емаилот", isOk: false }
     } else if (email.includes("@") && email.includes(".") && email !== "") {
-        if (domain === undefined || domain.length < 2) return { msg: "Check your domain", isOk: false };
-        if (provider === undefined || provider.length < 2) return { msg: "Check your provider", isOk: false };
+        if (domain === undefined || domain.length < 2) return { msg: "Проверете го доменот", isOk: false };
+        if (provider === undefined || provider.length < 2) return { msg: "Проверете го провајдерот", isOk: false };
         if ((hasNumbers(provider)) || hasNumbers(domain) || (domain.length > 3)) {
-            return { msg: "Check your domain or provider", isOk: false };
+            return { msg: "Проверете го доменот или провајдерот", isOk: false };
         }
     } else {
-        return { msg: "Check your email", isOk: false };
+        return { msg: "Погрешен Емаил", isOk: false };
     };
     return { msg: "", isOk: true };
 };
@@ -146,7 +146,7 @@ export const NotificationWindow = props => {
         <div className="notification-window">
             <p>{props.message}</p>
             <p>Not received email? Resend in {props.timer}s or
-            <Link style={{color: "purple"}} to="/loginadmin" > Login now</Link>
+            <Link style={{ color: "purple" }} to="/loginadmin" > Login now</Link>
             </p>
         </div>
     );
