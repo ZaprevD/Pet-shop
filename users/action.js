@@ -9,7 +9,7 @@ logginUser = async (req, res) => {
     if (dbUser !== undefined) {
         if (dbUser.Password === req.body.password) {
             const user = new User(dbUser.Id, dbUser.Email, dbUser.Username);
-            let token = jwt.sign({ user }, "test", { expiresIn: '2h' });
+            let token = jwt.sign({ user }, process.env.SECRET, { expiresIn: '2h' });
             res.status(200).send(token);
         } else {
             res.status(400).send("Внесовте погрешна лозинка, обидете се повторно!");

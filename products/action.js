@@ -46,23 +46,13 @@ addNewProduct = async (req, res) => {
         const categoryId = await categoryQuery.getCategoryByNameQuery(req.body.categoryName);
         if (req.files !== null) {
             const file = req.files.productImage;
-            const format = file.mimetype.substring(file.mimetype.lastIndexOf("/") + 1);
-            const size = file.size;
-            if (format === "jpeg" || format === "png") {
-                if (size < 8895000) {
-                    file.name.includes(" ") ? file.name = file.name.replace(/\s/g, '-') : null;
-                    await file.mv(`pet-shop/public/products-images/${file.name}`, err => {
-                        if (err) {
-                            res.status(500).send(err);
-                        };
-                    });
-                    await query.addNewProductQuery(req.body.name, req.body.desc, req.body.price, req.body.onAction, categoryId[0].Id, req.body.image);
-                } else {
-                    return res.status(413).send("Сликата е преголема ве молам внесете слика максимум до 8,50MB");
+            file.name.includes(" ") ? file.name = file.name.replace(/\s/g, '-') : null;
+            await file.mv(`pet-shop/public/products-images/${file.name}`, err => {
+                if (err) {
+                    res.status(500).send(err);
                 };
-            } else {
-                return res.status(415).send("Погрешен Формат, ве молам внесете 'PNG ' или ' JPG' Формат на слика.");
-            };
+            });
+            await query.addNewProductQuery(req.body.name, req.body.desc, req.body.price, req.body.onAction, categoryId[0].Id, req.body.image);
         } else {
             await query.addNewProductQuery(req.body.name, req.body.desc, req.body.price, req.body.onAction, categoryId[0].Id, req.body.image);
             res.status(200).send("Производот е додаден");
@@ -76,24 +66,14 @@ changeProductPicture = async (req, res) => {
     try {
         if (req.files !== null) {
             const file = req.files.productImage;
-            const format = file.mimetype.substring(file.mimetype.lastIndexOf("/") + 1);
-            const size = file.size;
-            if (format === "jpeg" || format === "png") {
-                if (size < 8895000) {
-                    file.name.includes(" ") ? file.name = file.name.replace(/\s/g, '-') : null;
-                    await file.mv(`pet-shop/public/products-images/${file.name}`, err => {
-                        if (err) {
-                            return res.status(500).send(err);
-                        };
-                    });
-                    await query.changeProductPictureQuery(file.name, req.params.id)
-                    return res.status(200).send("Сликата е променета");
-                } else {
-                    return res.status(413).send("Сликата е преголема ве молам внесете слика максимум до 8,50MB");
+            file.name.includes(" ") ? file.name = file.name.replace(/\s/g, '-') : null;
+            await file.mv(`pet-shop/public/products-images/${file.name}`, err => {
+                if (err) {
+                    return res.status(500).send(err);
                 };
-            } else {
-                return res.status(415).send("Погрешен Формат, ве молам внесете 'PNG ' или ' JPG' Формат на слика.");
-            };
+            });
+            await query.changeProductPictureQuery(file.name, req.params.id)
+            return res.status(200).send("Сликата е променета");
         };
         res.status(400).send("Немате внесено слика");
     } catch (error) {
