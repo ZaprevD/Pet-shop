@@ -9,7 +9,7 @@ router.get("/api/products/category/:id", action.getProductsByCategory)
 router.put("/api/product/:id", action.updateProduct);
 router.delete("/api/product/:id", action.deleteProduct);
 router.post("/api/product", validation.productNameValidation,
- validation.productPriceValidation, action.addNewProduct);
-router.patch(`/api/change/picture/:id`, action.changeProductPicture);
+ validation.productPriceValidation, validation.fileFormatValidation, validation.fileSizeValidation, action.addNewProduct);
+router.patch(`/api/change/picture/:id`, validation.fileFormatValidation, validation.fileSizeValidation, action.changeProductPicture);
 
 module.exports = router;

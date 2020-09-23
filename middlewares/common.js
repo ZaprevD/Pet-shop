@@ -4,25 +4,6 @@ logger = (req, res, next) => {
     next();
 }
 
-// uploadImage = async (req, res, next) => {
-//     try {
-//         if (req.files !== null) {
-//             const file = req.files.productImage;
-//             file.mv(`pet-shop/public/products-images/${file.name}`, err => {
-//                 if (err) {
-//                     console.log(err);
-//                     res.status(500).send(err);
-//                 }
-//                next();
-//             })
-//         }else{
-//             next();
-//         }
-//     } catch (error) {
-//         console.log(error)
-//     }
-// }
-
 wrongRouteHandler = (req, res, next) => {
     let error = new Error(`Route does not exists please try again with another route`);
     error.status = 404;

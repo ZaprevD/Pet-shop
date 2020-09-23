@@ -124,7 +124,52 @@ productPriceValidation = (req, res, next) => {
     next();
 };
 
+fileFormatValidation = (req, res, next) => {
+    try {
+        if (req.files !== null) {
+            const file = req.files.productImage;
+            const format = file.mimetype.substring(file.mimetype.lastIndexOf("/") + 1);
+            if (format === "jpeg" || format === "png") {
+                next();
+            } else {
+                let err = new Error("Погрешен Формат, ве молам внесете 'PNG ' или ' JPG' Формат на слика.")
+                err.status = 415;
+                next(err);
+            }
+        } else {
+            next();
+        }
+    } catch (error) {
+        let err = new Error("Настана серверска грешка ве молам обидетесе подоцна!");
+        err.status = 500;
+        next(err);
+    }
+}
+
+fileSizeValidation = (req, res, next) => {
+    try {
+        if (req.files !== null) {
+            const file = req.files.productImage;
+            const size = file.size;
+            if (size < 8895000) {
+                next();
+            }else{
+                let err = new Error("Сликата е преголема ве молам внесете слика максимум до 8,50MB.")
+                err.status = 413;
+                next(err);
+            }
+        } else {
+            next();
+        }
+    } catch (error) {
+        let err = new Error("Настана серверска грешка ве молам обидетесе подоцна!");
+        error.status = 500;
+        next(err);
+    }
+}
+
 module.exports = {
     emailValidation, usernameValidation, passwordValidation, passwordValidationForExistingUser,
-    productNameValidation, categoryNameValidation, productPriceValidation
+    productNameValidation, categoryNameValidation, productPriceValidation, fileFormatValidation,
+    fileSizeValidation
 };

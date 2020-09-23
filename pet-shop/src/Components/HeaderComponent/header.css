@@ -50,6 +50,7 @@ a {
     left: 10%;
     padding: 10px;
     background: rgb(62, 255, 62);
+    top: 5%;
 }
 
 .small-menu {
@@ -72,15 +73,16 @@ a {
     .main-list {
         position: absolute;
         display: none;
-        width: 80%;
+        width: 50%;
         right: 0;
         top: 100%;
+        background: rgb(58, 1, 58);
         flex-direction: column;
     }
 
     .image-holder {
-        position: relative;
-        width: 35%;
+        width: 17%;
+        top: 1%;
     }
     
     .hamburger-menu-bars {
@@ -105,15 +107,17 @@ a {
         .main-list {
             position: absolute;
             display: none;
-            width: 80%;
+            width: 30%;
             right: 0;
             top: 100%;
             flex-direction: column;
+            background: rgb(58, 1, 58);
         }
     
         .image-holder {
-            position: relative;
-            width: 10%;
+            width: 7%;
+            left: 13%;
+            top: 10%;
         }
         
         .hamburger-menu-bars {
@@ -131,8 +135,11 @@ a {
     
         .small-menu:hover .main-list {
             display: flex;
-        }
-                    
+        }              
  }
 
-
+ @media (min-width: 971px) and (max-width: 1262px){
+  .box-35 {
+    width: 70%;
+   }  
+}
